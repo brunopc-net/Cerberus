@@ -1,14 +1,11 @@
 pipeline {
     agent {
-        docker {
-            image 'python:3.9-alpine'
-            args '-v /home/bruno:/home/bruno'
-        }
+        dockerfile true
     }
     stages {
         stage('build') {
             steps {
-                sh 'python src/main.py'
+                sh 'python app/src/main.py'
             }
         }
     }
