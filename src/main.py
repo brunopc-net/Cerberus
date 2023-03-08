@@ -1,7 +1,7 @@
 import os
 import log4p
 
-from src import _hasher as hasher
+import _hasher as hasher
 
 log = log4p.GetLogger(__name__, config="log4p.json").logger
 
