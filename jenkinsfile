@@ -7,7 +7,7 @@ pipeline {
             steps {
                 sh 'echo "$PWD"'
                 sh 'ls'
-                sh 'python app/src/main.py'
+                sh 'python src/main.py'
             }
         }
     }
