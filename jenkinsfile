@@ -5,6 +5,8 @@ pipeline {
     stages {
         stage('build') {
             steps {
+                sh 'echo "$PWD"'
+                sh 'ls'
                 sh 'python app/src/main.py'
             }
         }
