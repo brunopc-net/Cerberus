@@ -3,8 +3,6 @@ FROM python:3.9-alpine
 # Defining the Author
 MAINTAINER Bruno PC
 
-VOLUME /home/bruno
-
 #Create a working directory
 WORKDIR /app
 
@@ -13,3 +11,6 @@ COPY . .
 
 # Install requirements
 RUN pip3 install -r requirements.txt
+
+#Mounting the home directory
+VOLUME /home/bruno
