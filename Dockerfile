@@ -11,6 +11,3 @@ COPY . .
 
 # Install requirements
 RUN pip3 install -r requirements.txt
-
-#Mounting the home directory
-VOLUME /home/bruno
