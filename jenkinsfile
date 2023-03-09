@@ -1,6 +1,17 @@
 pipeline {
     agent none
     stages {
+         stage('Redis') {
+            agent {
+                docker {
+                    image 'redis:7.0-alpine'
+                }
+            }
+            steps {
+                sh 'redis-server'
+                sh 'redis-cli ping'
+            }
+        }
         stage('build') {
             agent {
                 dockerfile {

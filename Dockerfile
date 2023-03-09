@@ -13,4 +13,6 @@ COPY . .
 RUN pip3 install -r requirements.txt
 
 #install redis
-RUN apk --update add redis
+RUN apk --update add redis \
+    && redis-server \
+    && redis-cli ping
