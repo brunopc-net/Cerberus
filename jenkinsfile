@@ -8,6 +8,7 @@ pipeline {
         stage('build') {
             steps {
                 sh 'whoami'
+                sh 'id'
 
                 sh 'ls -lrt'
                 sh 'ls /home/bruno'
