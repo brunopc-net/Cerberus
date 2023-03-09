@@ -16,5 +16,5 @@ def hash_dir(directory, hasher):
                 for chunk in iter(lambda: f.read(4096), b""):
                     hasher.update(chunk)
         elif path.is_dir():
-            hasher = hasher(path, hasher)
+            hasher = hash_dir(path, hasher)
     return hash.hexdigest()
