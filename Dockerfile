@@ -13,6 +13,8 @@ COPY . .
 RUN pip3 install -r requirements.txt
 
 #Adding proper user
+#RUN addgroup --g 1024 groupcontainer
+#RUN adduser -u 1024 -G groupcontainer -h /home/containeruser -D containeruser
 
-RUN addgroup -S sambashare && adduser -S sambauser -G sambashare
-USER sambauser
+RUN addgroup --gid 1002 sambashare
+RUN adduser --disabled-password --uid 1001 --ingroup 1002 sambauser
