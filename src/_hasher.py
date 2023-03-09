@@ -25,5 +25,5 @@ def get_hash(directory, hasher):
                     hasher.update(chunk)
         elif path.is_dir():
             hasher = get_hash(path, hasher)
-    return hasher
+    return hasher.hexdigest()
 
