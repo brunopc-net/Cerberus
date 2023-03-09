@@ -4,7 +4,7 @@ from pathlib import Path
 
 
 def hash_blake2b(directory):
-    return hash_dir(directory, hashlib.blake2b())
+    return hash_dir(directory, hashlib.blake2b()).hexdigest()
 
 
 def hash_dir(directory, hasher):
@@ -17,4 +17,4 @@ def hash_dir(directory, hasher):
                     hasher.update(chunk)
         elif path.is_dir():
             hasher = hash_dir(path, hasher)
-    return hasher.hexdigest()
+    return hasher
