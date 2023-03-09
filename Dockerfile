@@ -18,4 +18,5 @@ RUN pip3 install -r requirements.txt
 
 RUN addgroup --g 1000 brunogroup
 RUN adduser -u 1000 -G brunogroup -h /home/bruno -D bruno
+
 USER bruno
