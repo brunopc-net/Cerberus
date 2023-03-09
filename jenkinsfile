@@ -9,6 +9,7 @@ pipeline {
             steps {
                 sh 'whoami'
                 sh 'ls -lrt'
+                sh 'ls /home/bruno'
                 sh 'python src/main.py'
             }
         }
