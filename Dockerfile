@@ -1,4 +1,4 @@
-FROM python:3.9-slim-bullseye
+FROM python:3.9-alpine
 
 # Defining the Author
 MAINTAINER Bruno PC
