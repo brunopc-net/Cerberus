@@ -14,5 +14,5 @@ RUN pip3 install -r requirements.txt
 
 #Adding proper user
 
-RUN addgroup -S brunogroup && adduser -S bruno -G brunogroup
-USER bruno
+RUN addgroup -S sambashare && adduser -S sambauser -G sambashare
+USER sambauser
