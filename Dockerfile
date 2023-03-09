@@ -18,6 +18,6 @@ RUN whoami
 
 RUN addgroup --gid 114 mygroup
 RUN adduser --disabled-password --uid 110 --ingroup mygroup myuser
-USER 110:114
+USER 114:110
 
 RUN whoami
