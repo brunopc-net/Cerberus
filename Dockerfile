@@ -11,3 +11,6 @@ COPY . .
 
 # Install requirements
 RUN pip3 install -r requirements.txt
+
+#install redis
+RUN apk --update add redis
