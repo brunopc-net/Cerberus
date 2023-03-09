@@ -13,5 +13,6 @@ COPY . .
 RUN pip3 install -r requirements.txt
 
 #Adding proper user
-RUN useradd -ms /bin/bash bruno
+
+RUN addgroup -S brunogroup && adduser -S bruno -G brunogroup
 USER bruno
