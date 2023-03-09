@@ -13,9 +13,7 @@ COPY . .
 RUN pip3 install -r requirements.txt
 
 #Adding proper user
-#RUN addgroup --g 1024 groupcontainer
-#RUN adduser -u 1024 -G groupcontainer -h /home/containeruser -D containeruser
 
-RUN addgroup --g 1000 brunogroup
-RUN adduser -u 1000 -G brunogroup -h /home/bruno -D bruno
-USER bruno
+RUN addgroup --gid 1000 mygroup
+RUN adduser --disabled-password --gecos "" --force-badname --ingroup 1000 myuser
+USER myuser
