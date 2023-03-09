@@ -16,8 +16,8 @@ RUN pip3 install -r requirements.txt
 
 RUN whoami
 
-RUN addgroup --gid 114 jenkins
-RUN adduser --disabled-password --uid 110 --ingroup jenkins jenkins
-USER 110:114
+RUN addgroup --gid 1000 bruno
+RUN adduser --disabled-password --uid 1000 --ingroup bruno bruno
+USER 1000:1000
 
 RUN whoami
