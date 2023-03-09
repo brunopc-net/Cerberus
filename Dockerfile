@@ -16,4 +16,7 @@ RUN pip3 install -r requirements.txt
 
 RUN addgroup --gid 1000 mygroup
 RUN adduser --disabled-password --uid 1000 --ingroup mygroup bruno
-USER bruno
+
+RUN ps aux
+
+USER 1000:1000
