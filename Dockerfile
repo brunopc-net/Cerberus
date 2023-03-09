@@ -3,16 +3,8 @@ FROM python:3.9-bullseye-slim
 # Defining the Author
 MAINTAINER Bruno PC
 
-#Create a working directory
-WORKDIR /app
-
-# Add the source code into the image
-COPY . .
-
-# Install requirements
-RUN pip3 install -r requirements.txt
-
 #REDIS
+#######################################################################################################################################
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 RUN groupadd -r -g 999 redis && useradd -r -g redis -u 999 redis
 
@@ -131,3 +123,14 @@ ENTRYPOINT ["docker-entrypoint.sh"]
 
 EXPOSE 6379
 CMD ["redis-server"]
+#######################################################################################################################################
+#Redis - END
+
+#Create a working directory
+WORKDIR /app
+
+# Add the source code into the image
+COPY . .
+
+# Install requirements
+RUN pip3 install -r requirements.txt
