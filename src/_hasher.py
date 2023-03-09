@@ -3,8 +3,11 @@ import hashlib
 from pathlib import Path
 
 def get_hash_blake2b(directory):
+    return get_hash(directory, hashlib.blake2b())
+
+def get_hash(directory, hasher):
     return str(
-        hash_dir(directory, hashlib.blake2b())
+        hash_dir(directory, hasher)
         .hexdigest()
     )
 

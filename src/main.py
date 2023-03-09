@@ -4,6 +4,7 @@ import redis
 import _hasher as hasher
 
 log = log4p.GetLogger(__name__, config="log4p.json").logger
+redis = redis.Redis(decode_responses=True)
 
 DOCUMENTS="/home/bruno/documents"
 
