@@ -17,4 +17,4 @@ def hash_dir(directory, hasher):
                     hasher.update(chunk)
         elif path.is_dir():
             hasher = hash_dir(path, hasher)
-    return hash.hexdigest()
+    return hasher.hexdigest()
