@@ -1,24 +1,12 @@
 import hashlib
-import log4p
 
 from pathlib import Path
 
-log = log4p.GetLogger(__name__, config="log4p.json").logger
-
 def get_hash_blake2b(directory):
-    return get_hash_value(directory, hashlib.blake2b())
-
-def get_hash_value(directory, hasher):
-    hash_value = str(
-        hash_dir(directory, hasher)
+    return str(
+        hash_dir(directory, hashlib.blake2b())
         .hexdigest()
     )
-    log.debug(
-        "Current hash for the directory %s: %s",
-        directory,
-        hash_value
-    )
-    return hash_value
 
 def hash_dir(directory, hasher):
     assert Path(directory).is_dir()

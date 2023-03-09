@@ -1,5 +1,5 @@
-import os
 import log4p
+import redis
 
 import _hasher as hasher
 
@@ -7,8 +7,25 @@ log = log4p.GetLogger(__name__, config="log4p.json").logger
 
 DOCUMENTS="/home/bruno/documents"
 
+def is_backup_necessary(directory):
+    current_h = hasher.get_hash_blake2b(directory)
+    log.debug("Current hash for the directory %s: %s ", directory, current_h)
+
+    hash_key = "hash_" + directory
+    previous_h = str(redis.get(hash_key))
+    log.debug("Previous hash: " + previous_h)
+
+    if current_h == previous_h:
+        return False
+
+    redis.set(hash_key, current_h)
+    return True
+
 if __name__ == '__main__':
-    hasher.get_hash_blake2b(DOCUMENTS)
+    to_backup = is_backup_necessary(DOCUMENTS)
+    log.info("Need to backup directory: " + str(to_backup))
+
+
 
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
