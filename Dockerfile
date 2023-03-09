@@ -11,3 +11,7 @@ COPY . .
 
 # Install requirements
 RUN pip3 install -r requirements.txt
+
+#Adding proper user
+RUN useradd -ms /bin/bash bruno
+USER bruno
