@@ -20,4 +20,6 @@ RUN addgroup --gid 114 jenkins
 RUN adduser --disabled-password --uid 110 --ingroup jenkins jenkins
 USER 110:114
 
+RUN usermod -a -G sambashare jenkins
+
 RUN whoami
