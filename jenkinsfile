@@ -8,6 +8,7 @@ pipeline {
         stage('build') {
             steps {
                 sh 'whoami'
+                sh 'ls -lrt'
                 sh 'python src/main.py'
             }
         }
