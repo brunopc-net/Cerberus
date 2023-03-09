@@ -17,7 +17,7 @@ RUN pip3 install -r requirements.txt
 RUN whoami
 
 RUN addgroup --gid 1002 mygroup
-RUN adduser --disabled-password --uid 1001 --ingroup myuser mygroup
+RUN adduser --disabled-password --uid 1001 --ingroup mygroup myuser
 USER 1001:1002
 
 RUN whoami
