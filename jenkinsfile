@@ -1,11 +1,22 @@
 pipeline {
-    agent {
-        dockerfile {
-            args '-v /home/bruno:/home/bruno'
-        }
-    }
+    agent none
     stages {
+         stage('Redis') {
+            agent {
+                docker {
+                    image 'redis:7.0-alpine'
+                }
+            }
+            steps {
+                sh 'redis-cli ping'
+            }
+        }
         stage('build') {
+            agent {
+                dockerfile {
+                    args '-v /home/bruno:/home/bruno'
+                }
+            }
             steps {
                 sh 'python src/main.py'
             }
