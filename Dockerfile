@@ -18,3 +18,4 @@ RUN pip3 install -r requirements.txt
 
 RUN addgroup --g 1002 groupcontainer
 RUN adduser -u 1001 -G groupcontainer -h /home/containeruser -D containeruser
+USER containeruser
