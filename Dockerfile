@@ -16,10 +16,8 @@ RUN pip3 install -r requirements.txt
 
 RUN whoami
 
-RUN addgroup --gid 114 jenkins
-RUN adduser --disabled-password --uid 110 --ingroup jenkins jenkins
-USER 110:114
-
-RUN usermod -a -G sambashare jenkins
+RUN addgroup --gid 1001 sambashare
+RUN adduser --disabled-password --uid 110 --ingroup sambashare jenkins
+USER 110:1001
 
 RUN whoami
