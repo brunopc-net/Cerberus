@@ -1,3 +1,5 @@
+import sys
+
 import log4p
 import hashlib
 import redis
@@ -16,7 +18,7 @@ def is_backup_necessary(directory):
 
     hash_key = "hash_" + directory
     previous_h = str(redis.get(hash_key))
-    log.debug("Previous hash: " + previous_h)
+    log.debug("Previous hash: %s", previous_h)
 
     if current_h == previous_h:
         return False
@@ -26,8 +28,10 @@ def is_backup_necessary(directory):
 
 
 if __name__ == '__main__':
-    to_backup = is_backup_necessary(DOCUMENTS)
-    log.info("Need to backup directory: " + str(to_backup))
+    directory = sys.argv[1]
+    log.info("Launching backup procedure for directory %s", directory)
+    to_backup = is_backup_necessary(directory)
+    log.info("Need to backup directory: %s", str(to_backup))
 
 
 
