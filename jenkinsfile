@@ -4,7 +4,6 @@ pipeline {
         stage('docker-compose') {
             steps {
                 sh "docker compose up -d"
-                sh 'docker run cerberus'
                 sh 'docker logs -t $(docker-compose ps -q cerberus)'
             }
         }
@@ -12,7 +11,7 @@ pipeline {
     post {
         always {
             //sh 'docker compose down'
-            //sh 'docker system prune -f'
+            sh 'docker stop cerberus'
             echo 'Bye bye!!!'
         }
     }
