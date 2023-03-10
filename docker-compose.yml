@@ -28,7 +28,7 @@ services:
     depends_on:
       - redis
     command:
-      -  python src/main.py
+      -  python /app/src/main.py
     networks:
       - app-tier
     volumes:
