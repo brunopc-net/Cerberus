@@ -30,7 +30,7 @@ services:
     networks:
       - app-tier
     volumes:
-      - /home/bruno:/home/bruno
+      - /home/bruno:/home/bruno:ro
 
 networks:
   app-tier:
