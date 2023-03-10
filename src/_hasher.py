@@ -1,13 +1,8 @@
-import hashlib
-
 from pathlib import Path
 
-def get_hash_blake2b(directory):
-    return get_hash(directory, hashlib.blake2b())
-
-def get_hash(directory, hasher):
+def get_hash(directory, hash_algorithm):
     return str(
-        hash_dir(directory, hasher)
+        hash_dir(directory, hash_algorithm)
         .hexdigest()
     )
 

@@ -1,6 +1,5 @@
-import os
-
 import log4p
+import hashlib
 import redis
 
 import _hasher as hasher
@@ -12,7 +11,7 @@ DOCUMENTS="/home/bruno/documents"
 
 
 def is_backup_necessary(directory):
-    current_h = hasher.get_hash_blake2b(directory)
+    current_h = hasher.get_hash(directory, hashlib.blake2b())
     log.debug("Current hash for the directory %s: %s ", directory, current_h)
 
     hash_key = "hash_" + directory
