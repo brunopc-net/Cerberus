@@ -1,3 +1,4 @@
+import os
 import sys
 import log4p
 import hashlib
@@ -29,6 +30,7 @@ def is_backup_necessary(directory_path):
 
 def get_dir():
     dir_name = DOCUMENTS
+    print(os.listdir(dir_name))
     is_dir = Path(dir_name).is_dir()
     log.debug("%s is a valid directory: %s", dir_name, is_dir)
     assert Path(dir_name).is_dir()
