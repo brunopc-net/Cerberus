@@ -19,6 +19,7 @@ services:
       - app-tier
 
   cerberus:
+    container_name: cerberus
     build:
       context: .
       dockerfile: Dockerfile
