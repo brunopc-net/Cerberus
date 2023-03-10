@@ -11,3 +11,5 @@ COPY . .
 
 # Install requirements
 RUN pip3 install -r requirements.txt
+
+ENTRYPOINT tail -f /dev/null
