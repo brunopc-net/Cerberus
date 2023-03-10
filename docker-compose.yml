@@ -16,6 +16,8 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - redis
+    volumes:
+      - /home/bruno:/home/bruno:ro
 
 volumes:
     redis_data:

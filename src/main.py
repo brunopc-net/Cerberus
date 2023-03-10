@@ -1,4 +1,3 @@
-import os
 import sys
 import log4p
 import hashlib
@@ -10,8 +9,6 @@ from pathlib import Path
 
 log = log4p.GetLogger(__name__, config="log4p.json").logger
 redis = redis.Redis(host='redis', port=6379, db=0, decode_responses=True)
-
-DOCUMENTS="/home/bruno/documents"
 
 
 def is_backup_necessary(directory_path):
@@ -28,9 +25,9 @@ def is_backup_necessary(directory_path):
     redis.set(hash_key, current_h)
     return True
 
+
 def get_dir():
-    dir_name = DOCUMENTS
-    print(os.listdir(dir_name))
+    dir_name = sys.argv[1]
     is_dir = Path(dir_name).is_dir()
     log.debug("%s is a valid directory: %s", dir_name, is_dir)
     assert Path(dir_name).is_dir()
@@ -38,6 +35,9 @@ def get_dir():
 
 
 if __name__ == '__main__':
+    log.info("Launching backup procedure for directory %s", sys.argv[1])
+    is_dir = Path(dir_name).is_dir()
+
     directory = get_dir()
     log.info("Launching backup procedure for directory %s", directory)
     to_backup = is_backup_necessary(directory)
