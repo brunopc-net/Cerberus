@@ -1,10 +1,11 @@
 import sys
-
 import log4p
 import hashlib
 import redis
 
 import _hasher as hasher
+
+from pathlib import Path
 
 log = log4p.GetLogger(__name__, config="log4p.json").logger
 redis = redis.Redis(host='redis', port=6379, db=0, decode_responses=True)
@@ -12,11 +13,11 @@ redis = redis.Redis(host='redis', port=6379, db=0, decode_responses=True)
 DOCUMENTS="/home/bruno/documents"
 
 
-def is_backup_necessary(directory):
-    current_h = hasher.get_hash(directory, hashlib.blake2b())
-    log.debug("Current hash for the directory %s: %s ", directory, current_h)
+def is_backup_necessary(directory_path):
+    current_h = hasher.get_hash(directory_path, hashlib.blake2b())
+    log.debug("Current hash for the directory %s: %s ", directory_path, current_h)
 
-    hash_key = "hash_" + directory
+    hash_key = "hash_" + directory_path
     previous_h = str(redis.get(hash_key))
     log.debug("Previous hash: %s", previous_h)
 
@@ -29,6 +30,7 @@ def is_backup_necessary(directory):
 
 if __name__ == '__main__':
     directory = sys.argv[1]
+    assert Path(directory).is_dir()
     log.info("Launching backup procedure for directory %s", directory)
     to_backup = is_backup_necessary(directory)
     log.info("Need to backup directory: %s", str(to_backup))

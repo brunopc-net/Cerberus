@@ -7,7 +7,6 @@ def get_hash(directory, hash_algorithm):
     )
 
 def hash_dir(directory, hasher):
-    assert Path(directory).is_dir()
     for path in sorted(Path(directory).iterdir(), key=lambda p: str(p).lower()):
         hasher.update(path.name.encode())
         if path.is_file():
