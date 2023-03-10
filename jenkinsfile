@@ -3,19 +3,15 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh "docker-compose build"
-            }
-        }
-        stage('docker-compose') {
-            steps {
-                sh "docker-compose up -d"
-                sh 'docker logs -t $(docker-compose ps -q cerberus)'
+                sh "docker compose build"
+                sh "docker compose create"
+                sh "docker compose run"
             }
         }
     }
     post {
         always {
-            sh 'sudo docker system prune -a -f'
+            sh 'docker system prune -a -f'
             echo 'Bye bye!!!'
         }
     }
