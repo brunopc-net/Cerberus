@@ -1,11 +1,10 @@
 pipeline {
     agent any
     stages {
-        stage('build') {
+        stage('docker-compose') {
             steps {
-                sh "docker compose build"
-                sh "docker compose create"
-                sh "docker compose run"
+                sh "docker-compose up -d"
+                sh 'docker logs -t $(docker-compose ps -q cerberus)'
             }
         }
     }
