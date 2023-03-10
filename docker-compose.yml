@@ -1,0 +1,41 @@
+version: '3'
+
+# Run as
+# docker-compose build; docker-compose up -d
+# Check with
+# docker ps
+# Then check the logs with
+# docker logs --tail 50 $container_id
+# docker-compose images
+# docker-compose logs --tail 20 repo_name
+
+services:
+
+  redis:
+    image: redis:7.0-alpine
+    ports:
+      - "6379"
+    networks:
+      - app-tier
+
+  doc_guardian:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - redis
+    networks:
+      - app-tier
+    command:
+      tail -f /dev/null
+    volumes:
+      - user-files:/home/bruno
+      - read_only: true
+
+
+networks:
+  app-tier:
+    driver: bridge
+
+volumes:
+  user-files:

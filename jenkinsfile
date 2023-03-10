@@ -1,25 +1,10 @@
 pipeline {
-    agent none
+    agent any
     stages {
-         stage('Redis') {
-            agent {
-                docker {
-                    image 'redis:7.0-alpine'
-                }
-            }
+        stage('docker-compose') {
             steps {
-                sh 'redis-server'
-                sh 'redis-cli ping'
-            }
-        }
-        stage('build') {
-            agent {
-                dockerfile {
-                    args '-v /home/bruno:/home/bruno'
-                }
-            }
-            steps {
-                sh 'python src/main.py'
+                sh "docker-compose build"
+                sh "docker-compose up -d"
             }
         }
     }
