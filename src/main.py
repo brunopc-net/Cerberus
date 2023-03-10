@@ -28,7 +28,7 @@ def is_backup_necessary(directory_path):
     return True
 
 def get_dir():
-    dir_name = sys.argv[1]
+    dir_name = DOCUMENTS
     is_dir = Path(dir_name).is_dir()
     log.debug("%s is a valid directory: %s", dir_name, is_dir)
     assert Path(dir_name).is_dir()
