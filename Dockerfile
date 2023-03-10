@@ -9,7 +9,5 @@ WORKDIR /app
 # Add the source code into the image
 COPY . .
 
-VOLUME /home/bruno
-
 # Install requirements
 RUN pip3 install -r requirements.txt
