@@ -10,7 +10,8 @@ pipeline {
     }
     post {
         always {
-            sh 'docker system prune -a -f'
+            sh 'docker compose down'
+            sh 'docker system prune -f'
             echo 'Bye bye!!!'
         }
     }
