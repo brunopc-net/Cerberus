@@ -12,4 +12,4 @@ COPY . .
 # Install requirements
 RUN pip3 install -r requirements.txt
 
-CMD python src/main.py
+ENTRYPOINT python src/main.py
