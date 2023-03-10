@@ -32,7 +32,6 @@ services:
     volumes:
       - /home/bruno:/home/bruno
 
-
 networks:
   app-tier:
     driver: bridge

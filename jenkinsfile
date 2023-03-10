@@ -5,7 +5,7 @@ pipeline {
             steps {
                 sh "docker-compose build"
                 sh "docker-compose up -d"
-                sh 'docker logs -t --until=10m $(docker-compose ps -q cerberus)'
+                sh 'docker logs -t $(docker-compose ps -q cerberus)'
             }
         }
     }
