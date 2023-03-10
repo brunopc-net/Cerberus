@@ -10,8 +10,8 @@ redis = redis.Redis(host='redis', port=6379, db=0, decode_responses=True)
 
 DOCUMENTS="/home/bruno/documents"
 
+
 def is_backup_necessary(directory):
-    print(os.listdir(directory))
     current_h = hasher.get_hash_blake2b(directory)
     log.debug("Current hash for the directory %s: %s ", directory, current_h)
 
@@ -24,6 +24,7 @@ def is_backup_necessary(directory):
 
     redis.set(hash_key, current_h)
     return True
+
 
 if __name__ == '__main__':
     to_backup = is_backup_necessary(DOCUMENTS)
