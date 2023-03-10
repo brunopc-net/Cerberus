@@ -1,3 +1,5 @@
+import os
+
 import log4p
 import redis
 
@@ -9,6 +11,7 @@ redis = redis.Redis(host='redis', port=6379, db=0)
 DOCUMENTS="/home/bruno/documents"
 
 def is_backup_necessary(directory):
+    print(os.listdir(DOCUMENTS))
     current_h = hasher.get_hash_blake2b(directory)
     log.debug("Current hash for the directory %s: %s ", directory, current_h)
 
