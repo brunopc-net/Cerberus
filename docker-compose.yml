@@ -32,6 +32,8 @@ services:
         source: user-files
         target: /home/bruno
         read_only: true
+    logging:
+      driver: syslog
 
 
 networks:
