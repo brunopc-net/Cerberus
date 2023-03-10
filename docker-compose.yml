@@ -30,7 +30,10 @@ services:
     networks:
       - app-tier
     volumes:
-      - files:/home/bruno:ro
+      - type: volume
+        source: files
+        target: /home/bruno
+        read_only: true
 
 networks:
   app-tier:
