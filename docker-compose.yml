@@ -27,9 +27,6 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - redis
-    command:
-      - echo $pwd
-      - python /app/src/main.py
     networks:
       - app-tier
     volumes:
