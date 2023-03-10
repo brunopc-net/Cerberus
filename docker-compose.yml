@@ -30,15 +30,11 @@ services:
     networks:
       - app-tier
     volumes:
-      - type: volume
-        source: files
-        target: /home/bruno
-        read_only: true
+      - /home/bruno:/home/bruno:ro
 
 networks:
   app-tier:
     driver: bridge
 
 volumes:
-    files:
     redis_data:
