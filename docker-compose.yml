@@ -29,8 +29,6 @@ services:
       - app-tier
     volumes:
       - /home/bruno:/home/bruno
-    logging:
-      driver: syslog
 
 
 networks:
