@@ -1,17 +1,20 @@
 pipeline {
     agent any
     stages {
-        stage('docker-compose') {
+        stage('build') {
             steps {
                 sh "docker compose up -d"
-                sh 'docker logs -t $(docker-compose ps -q cerberus)'
+            }
+        }
+        stage('execute') {
+            steps {
+                sh 'docker exec -t cerberus python src/main.py'
             }
         }
     }
     post {
         always {
-            //sh 'docker compose down'
-            sh 'docker stop cerberus'
+            sh 'docker compose down'
             echo 'Bye bye!!!'
         }
     }
