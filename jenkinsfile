@@ -8,7 +8,7 @@ pipeline {
         }
         stage('execute') {
             steps {
-                sh 'docker exec -t cerberus python src/main.py $HOME/documents'
+                sh "docker exec -t cerberus python src/main.py $HOME/documents"
             }
         }
     }
