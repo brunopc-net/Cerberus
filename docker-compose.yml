@@ -26,8 +26,6 @@ services:
       - redis
     networks:
       - app-tier
-    command:
-      tail -f /dev/null
     volumes:
       - type: volume
         source: user-files
