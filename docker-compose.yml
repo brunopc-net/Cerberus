@@ -18,7 +18,7 @@ services:
     networks:
       - app-tier
 
-  doc_guardian:
+  cerberus:
     build:
       context: .
       dockerfile: Dockerfile
