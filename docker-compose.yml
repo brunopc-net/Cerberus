@@ -28,7 +28,8 @@ services:
     depends_on:
       - redis
     command:
-      -  python /app/src/main.py
+      - echo $pwd
+      - python /app/src/main.py
     networks:
       - app-tier
     volumes:
