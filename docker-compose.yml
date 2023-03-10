@@ -31,7 +31,6 @@ services:
       - app-tier
     volumes:
       - /home/bruno:/home/bruno
-      - read_only: true
 
 
 networks:
