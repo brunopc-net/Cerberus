@@ -1,22 +1,11 @@
 version: '3.3'
 
-# Run as
-# docker-compose build; docker-compose up -d
-# Check with
-# docker ps
-# Then check the logs with
-# docker logs --tail 50 $container_id
-# docker-compose images
-# docker-compose logs --tail 20 repo_name
-
 services:
 
   redis:
     image: redis:7.0-alpine
     ports:
       - "6379"
-    networks:
-      - app-tier
     volumes:
       - redis_data:/data
 
@@ -27,14 +16,8 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - redis
-    networks:
-      - app-tier
     volumes:
       - /home/bruno:/home/bruno:ro
-
-networks:
-  app-tier:
-    driver: bridge
 
 volumes:
     redis_data:
