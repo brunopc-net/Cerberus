@@ -27,10 +27,16 @@ def is_backup_necessary(directory_path):
     redis.set(hash_key, current_h)
     return True
 
+def get_dir():
+    dir_name = sys.argv[1]
+    is_dir = Path(dir_name).is_dir()
+    log.debug("%s is a valid directory: %s", dir_name, is_dir)
+    assert Path(dir_name).is_dir()
+    return dir_name
+
 
 if __name__ == '__main__':
-    directory = sys.argv[1]
-    assert Path(directory).is_dir()
+    directory = get_dir()
     log.info("Launching backup procedure for directory %s", directory)
     to_backup = is_backup_necessary(directory)
     log.info("Need to backup directory: %s", str(to_backup))
