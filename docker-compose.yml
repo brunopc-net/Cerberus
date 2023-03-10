@@ -30,11 +30,12 @@ services:
     networks:
       - app-tier
     volumes:
-      - /home/bruno:/home/bruno:ro
+      - files:/home/bruno:ro
 
 networks:
   app-tier:
     driver: bridge
 
 volumes:
+    files:
     redis_data:
