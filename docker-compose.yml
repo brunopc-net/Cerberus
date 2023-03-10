@@ -29,7 +29,7 @@ services:
     command:
       tail -f /dev/null
     volumes:
-      - user-files:/home/bruno
+      - files:/home/bruno
       - read_only: true
 
 
@@ -38,4 +38,4 @@ networks:
     driver: bridge
 
 volumes:
-  user-files:
+  files:
