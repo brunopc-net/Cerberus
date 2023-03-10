@@ -12,6 +12,4 @@ COPY . .
 # Install requirements
 RUN pip3 install -r requirements.txt
 
-VOLUME /home/bruno
-
 CMD python src/main.py

@@ -28,7 +28,7 @@ services:
     networks:
       - app-tier
     volumes:
-      - user-files:/home/bruno
+      - /home/bruno:/home/bruno
     logging:
       driver: syslog
 
@@ -38,4 +38,4 @@ networks:
     driver: bridge
 
 volumes:
-  user-files:
+  /home/bruno:
