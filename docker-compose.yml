@@ -28,10 +28,7 @@ services:
     networks:
       - app-tier
     volumes:
-      - type: volume
-        source: user-files
-        target: /home/bruno
-        read_only: true
+      - user-files:/home/bruno
     logging:
       driver: syslog
 
