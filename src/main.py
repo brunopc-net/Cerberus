@@ -13,7 +13,7 @@ redis = redis.Redis(host='redis', port=6379, db=0, decode_responses=True)
 
 def is_backup_necessary(directory_path):
     current_h = hasher.get_hash(directory_path, hashlib.blake2b())
-    log.debug("Current hash for the directory %s: %s ", directory_path, current_h)
+    log.debug("Current hash for directory content: %s ",current_h)
 
     hash_key = "hash_" + directory_path
     previous_h = str(redis.get(hash_key))
