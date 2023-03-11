@@ -11,8 +11,9 @@ pipeline {
         }
         stage ('test'){
             steps {
-                sh 'docker exec -t cerberus python -m unittest tests/archiver_test.py'
                 sh 'docker exec -t cerberus python -m unittest tests/hasher_test.py'
+                sh 'docker exec -t cerberus python -m unittest tests/archiver_test.py'
+                sh 'docker exec -t cerberus python -m unittest tests/uploader_test.py'
             }
         }
         /*
