@@ -1,9 +1,12 @@
 # from https://github.com/taisei-project/python-zipfile-zstd
 
+import sys
 import os
 import tarfile
 
 from datetime import datetime
+
+sys.path.insert(0, 'app/src/')
 
 
 def archive(directory):
