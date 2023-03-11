@@ -6,7 +6,7 @@ import tarfile
 
 from datetime import datetime
 
-sys.path.insert(0, 'app/src/')
+sys.path.insert(0, 'src/')
 
 
 def archive(directory):
