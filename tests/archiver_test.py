@@ -2,7 +2,7 @@
 import os
 import unittest
 
-import _archiver as archiver
+import src.archiver as archiver
 
 
 class TestStringMethods(unittest.TestCase):

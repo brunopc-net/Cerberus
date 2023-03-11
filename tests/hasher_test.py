@@ -2,7 +2,7 @@ import hashlib
 import unittest
 import re
 
-import _hasher as hasher
+import src.hasher as hasher
 
 
 class TestStringMethods(unittest.TestCase):
