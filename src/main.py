@@ -26,21 +26,11 @@ def is_backup_necessary(directory_path):
     return True
 
 
-def get_dir():
-    dir_name = sys.argv[1]
-    is_dir = Path(dir_name).is_dir()
-    log.debug("%s is a valid directory: %s", dir_name, is_dir)
-    assert Path(dir_name).is_dir()
-    return dir_name
-
-
 if __name__ == '__main__':
-    log.info("Launching backup procedure for directory %s", sys.argv[1])
-    is_dir = Path(dir_name).is_dir()
-
-    directory = get_dir()
-    log.info("Launching backup procedure for directory %s", directory)
-    to_backup = is_backup_necessary(directory)
+    dir_name = sys.argv[1]
+    log.info("Launching backup procedure for directory %s", dir_name)
+    assert Path(dir_name).is_dir()
+    to_backup = is_backup_necessary(dir_name)
     log.info("Need to backup directory: %s", str(to_backup))
 
 
