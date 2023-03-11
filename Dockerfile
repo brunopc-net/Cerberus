@@ -1,23 +1,16 @@
-ARG USER=python
+FROM python:3.11-alpine
 
 # Defining the Author
 MAINTAINER Bruno PC
 
-FROM python:3.11-alpine
-
-#upgrade pip
-RUN pip install --upgrade pip
-
-#Add non-root user and create a working directory
-RUN adduser -D $USER
-USER $USER
-WORKDIR /home/$USER
+#Create a working directory
+WORKDIR /app
 
 # Add the source code into the image
-COPY --chown=myuser:myuser . .
+COPY . .
 
-# Install python requirements
-RUN pip install --user -r requirements.txt
+# Install requirements
+RUN pip3 install -r requirements.txt
 
 #Keep the container running before execution
 ENTRYPOINT sleep infinity
