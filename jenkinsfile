@@ -1,16 +1,30 @@
 pipeline {
     agent any
+    environment {
+        CREDENTIALS = credentials('bec67a8c-149f-4db9-b4b8-66d61a1e3b02')
+    }
     stages {
         stage('build') {
             steps {
-                sh "docker compose up -d"
+                sh 'docker compose up -d'
             }
         }
+        stage ('test'){
+            steps {
+                sh 'docker exec -t cerberus python tests/_archiver_test.py'
+            }
+        }
+        /*
         stage('execute') {
             steps {
-                sh "docker exec -t cerberus python src/main.py /home/bruno/documents"
+                sh '''docker exec -t cerberus python src/main.py \
+                    -d /home/bruno/documents \
+                    -u ${CREDENTIALS_USR} \
+                    -p ${CREDENTIALS_PSW}
+                '''
             }
         }
+        */
     }
     post {
         always {
