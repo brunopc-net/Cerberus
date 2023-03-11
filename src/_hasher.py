@@ -1,10 +1,12 @@
 from pathlib import Path
 
+
 def get_hash(directory, hash_algorithm):
     return str(
         hash_dir(directory, hash_algorithm)
         .hexdigest()
     )
+
 
 def hash_dir(directory, hasher):
     for path in sorted(Path(directory).iterdir(), key=lambda p: str(p).lower()):

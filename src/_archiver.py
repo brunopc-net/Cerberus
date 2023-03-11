@@ -5,6 +5,7 @@ import tarfile
 
 from datetime import datetime
 
+
 def archive(directory):
     tar_filename = directory + datetime.today().strftime('%Y-%m-%d') + '.tar'
     with tarfile.open(tar_filename, "w") as archive_file:
