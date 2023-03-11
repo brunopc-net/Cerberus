@@ -1,3 +1,4 @@
+import os
 import sys
 import log4p
 import hashlib
@@ -31,7 +32,9 @@ if __name__ == '__main__':
     dir_name = sys.argv[1]
     log.info("Launching backup procedure for directory %s", dir_name)
     assert Path(dir_name).is_dir()
-    archiver.archive(dir_name)
+    archive_file = archiver.archive(dir_name)
+    if os.path.isfile(archive_file):
+        log.info('Archiving %s into archive %s: Success!', dir_name, archive_file)
     #to_backup = is_backup_necessary(dir_name)
     #log.info("Need to backup directory: %s", str(to_backup))
 

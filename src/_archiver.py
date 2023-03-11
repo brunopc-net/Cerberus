@@ -14,5 +14,4 @@ def archive(directory):
                 archive_file.add(os.path.join(root, f))
 
         archive_file.close()
-
     return tar_filename
