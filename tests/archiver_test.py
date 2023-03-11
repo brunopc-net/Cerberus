@@ -2,11 +2,11 @@
 import os
 import unittest
 
-import archiver as archiver
+from src.archiver import archive
 
 
 class TestStringMethods(unittest.TestCase):
     def test_archive(self):
-        archive_file = archiver.archive("./")
+        archive_file = archive("./")
         self.assertTrue(os.path.isfile(archive_file))
         os.remove(archive_file)
