@@ -24,5 +24,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     if len(sys.argv) > 1:
         UploaderTest.PASSWORD = sys.argv.pop()
+        sys.argv.pop()
         UploaderTest.USERNAME = sys.argv.pop()
+        sys.argv.pop()
     unittest.main()
