@@ -11,9 +11,12 @@ pipeline {
         }
         stage ('test'){
             steps {
-                sh 'docker exec -t cerberus python -m unittest tests/hasher_test.py'
-                sh 'docker exec -t cerberus python -m unittest tests/archiver_test.py'
-                sh 'docker exec -t cerberus python tests/uploader_test.py -u ${CREDENTIALS_USR} -p ${CREDENTIALS_PSW}'
+                sh 'docker exec -t cerberus python tests/hasher_test.py'
+                sh 'docker exec -t cerberus python tests/archiver_test.py'
+                sh '''docker exec -t cerberus python tests/uploader_test.py \
+                    -u ${CREDENTIALS_USR} \
+                    -p ${CREDENTIALS_PSW} \
+                '''
             }
         }
         /*
@@ -22,7 +25,7 @@ pipeline {
                 sh '''docker exec -t cerberus python src/main.py \
                     -d /home/bruno/documents \
                     -u ${CREDENTIALS_USR} \
-                    -p ${CREDENTIALS_PSW}
+                    -p ${CREDENTIALS_PSW} \
                 '''
             }
         }
