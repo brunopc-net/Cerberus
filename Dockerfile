@@ -8,6 +8,7 @@ WORKDIR /app
 
 # Add the source code into the image
 COPY . .
+ENV PYTHONPATH "${PYTHONPATH}:/src"
 
 # Install requirements
 RUN pip3 install -r requirements.txt
