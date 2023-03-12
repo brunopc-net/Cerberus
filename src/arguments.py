@@ -1,7 +1,12 @@
 import getopt
 import sys
+import log4p
 
 from collections import defaultdict
+from pathlib import Path
+
+
+log = log4p.GetLogger(__name__, config="log4p.json").logger
 
 
 class Arguments:
@@ -19,7 +24,10 @@ class Arguments:
             elif opt in ("-p", "--password"):
                 self.arguments['password'] = arg
 
-    def get_directory(self):
+    def get_valid_directory(self):
+        if not Path(self.arguments['directory']).is_dir():
+            log.error("%s is not a valid directory", self.arguments['directory'])
+            sys.exit()
         return self.arguments['directory']
 
     def get_user(self):

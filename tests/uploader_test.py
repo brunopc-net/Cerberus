@@ -1,5 +1,4 @@
 import hashlib
-import os
 import sys
 import unittest
 import pcloud
