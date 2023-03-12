@@ -8,3 +8,7 @@ class ArchiverTest(unittest.TestCase):
         archive_file = archiver.archive("./")
         self.assertTrue(os.path.isfile(archive_file))
         os.remove(archive_file)
+
+
+if __name__ == "__main__":
+    unittest.main()
