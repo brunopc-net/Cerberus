@@ -6,8 +6,6 @@ import tarfile
 
 from datetime import datetime
 
-sys.path.insert(0, 'src/')
-
 
 def archive(directory):
     tar_filename = datetime.today().strftime('%Y-%m-%d') + '.tar'

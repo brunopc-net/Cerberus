@@ -21,3 +21,6 @@ class Uploader:
             return
         log.error("Was not able to upload to pcloud: " + str(response))
         sys.exit(response['result'])
+
+    def is_logged_in(self):
+        return len(self.pc.auth_token) > 1
