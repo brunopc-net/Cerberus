@@ -1,25 +1,47 @@
 import os
-import tarfile
 import log4p
+import tarfile
 
-from datetime import datetime
+import date
+import hasher
+import hashlib
 
+import storage
 
 log = log4p.GetLogger(__name__, config="log4p.json").logger
 
 
+def get_new_archive_name(directory_path):
+    return os.path.dirname(directory_path) + \
+        date.get_today() + \
+        '.tar'
+
+
+def get_last_archive_name(directory_path):
+    return os.path.dirname(directory_path) + \
+        (storage.get_last_execution_date()) + \
+        '.tar'
+
+
+def is_backup_needed(directory_path):
+    previous_hash = storage.get_last_directory_hash(directory_path)
+    current_hash = hasher.get_directory_hash(
+            directory_path,
+            hashlib.blake2b()
+    )
+    if previous_hash == current_hash:
+        log.info("Directory data is the same since the last check, no need to back up")
+        return False
+    log.info("Directory data has been updated since the last check, need to back up")
+    return True
+
+
 def archive(directory_path):
-    archive_filename = get_archive_name(directory_path)
-    with tarfile.open(archive_filename, "w") as archive_file:
+    archive_name = get_new_archive_name(directory_path)
+    with tarfile.open(archive_name, "w") as archive_file:
         for root, dirs, files in os.walk(directory_path):
             for f in files:
                 archive_file.add(os.path.join(root, f))
         archive_file.close()
-    log.info("Archive %s created from path %s", archive_filename, directory_path)
-    return archive_filename
-
-
-def get_archive_name(directory_path):
-    directory_name = os.path.dirname(directory_path)
-    date = datetime.today().strftime('%Y-%m-%d')
-    return directory_name + date + '.tar'
+    log.info("Archive %s created from path %s", archive_name, directory_path)
+    return archive_name
