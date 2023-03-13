@@ -1,13 +1,14 @@
 import sys
 import time
-
 import log4p
 import pcloud
+import hasher
+import hashlib
 
 log = log4p.GetLogger(__name__, config="log4p.json").logger
 
 
-class Uploader:
+class PCloudClient:
 
     def __init__(self, username, password):
         self.pc = pcloud.PyCloud(username, password)
@@ -20,6 +21,33 @@ class Uploader:
         self.pc.createfolderifnotexists(path=path)
         self.path = path
 
+    def is_file_present(self, file):
+        for item in self.get_directory_content():
+            if item['name'] == file:
+                log.info("File %s is present in directory %s", file, self.path)
+                return True
+        log.info("File %s not found in directory %s", file, self.path)
+        return False
+
+    def get_directory_content(self):
+        response = self.pc.listfolder(path=self.path)
+        log.debug(response)
+        return response['metadata']['contents']
+
+    def is_file_identical(self, file):
+        local_hash = hasher.get_file_hash(file, hashlib.sha1())
+        if local_hash == self.get_checksum(file):
+            log.info("Checksum validation passed, upload success")
+            return True
+        log.error("Checksum validation failed. Deleting the corrupted file")
+        self.delete_file(file)
+        return False
+
+    def get_checksum(self, file):
+        response = self.pc.checksumfile(path=self.path + '/' + file)
+        log.debug(response)
+        return response['sha1']
+
     def upload(self, file):
         response = self.pc.uploadfile(files=[file], path=self.path)
         log.debug(response)
@@ -30,26 +58,10 @@ class Uploader:
         log.error("Was not able to upload to pcloud")
         sys.exit(response['result'])
 
-    def get_checksum(self, file):
-        response = self.pc.checksumfile(path=self.path+'/'+file)
-        log.debug(response)
-        return response['sha1']
-
-    def is_file_present(self, file):
-        response = self.pc.listfolder(path=self.path)
-        log.debug(response)
-        dir_content = response['metadata']['contents']
-        for item in dir_content:
-            if item['name'] == file:
-                log.info("File %s is present in directory %s", file, self.path)
-                return True
-        log.info("File %s not found in directory %s", file, self.path)
-        return False
-
     def rename_file(self, file, new_name):
         response = self.pc.renamefile(
-            path=self.path+'/'+file,
-            topath=self.path+'/'+new_name
+            path=self.path + '/' + file,
+            topath=self.path + '/' + new_name
         )
         log.debug(response)
         if response['result'] == 0:
@@ -59,9 +71,9 @@ class Uploader:
         log.error("Failed to rename file %s to %s", file, new_name)
 
     def delete_file(self, file):
-        response = self.pc.deletefile(path=self.path+'/'+file)
+        response = self.pc.deletefile(path=self.path + '/' + file)
         log.debug(response)
         if response['result'] == 0:
             log.info("File %s deleted", file)
             return
-
+        log.error("Failed to delete file %s", file)
