@@ -39,8 +39,7 @@ class PCloudClient:
         if local_hash == self.get_checksum(file):
             log.info("Checksum validation passed, upload success")
             return True
-        log.error("Checksum validation failed. Deleting the corrupted file")
-        self.delete_file(file)
+        log.error("Checksum validation failed, file is corrupted")
         return False
 
     def get_checksum(self, file):
