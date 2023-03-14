@@ -11,7 +11,7 @@ redis = redis.Redis(host='redis', port=6379, db=0, decode_responses=True)
 
 
 if __name__ == '__main__':
-    args = Arguments(sys.argv[1:])
+    args = Arguments()
     dir_to_backup = args.get_valid_directory()
     pcloud_client = PCloudClient(args.get_user(), args.get_password())
 

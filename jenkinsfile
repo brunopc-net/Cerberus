@@ -1,23 +1,26 @@
 pipeline {
     agent any
     environment {
+        PROJECT = 'cerberus'
         CREDENTIALS = credentials('bec67a8c-149f-4db9-b4b8-66d61a1e3b02')
     }
     stages {
         stage('build') {
             steps {
-                sh 'docker compose -p cerberus up -d'
+                sh 'docker compose up -d'
             }
         }
         stage ('test'){
             steps {
-                sh 'docker exec -t cerberus python tests/hasher_test.py'
-                sh 'docker exec -t cerberus python tests/storage_test.py'
-                sh 'docker exec -t cerberus python tests/archiver_test.py'
-                sh '''docker exec -t cerberus python tests/pcloudclient_test.py \
+                sh 'docker exec -t ${PROJECT} username=${CREDENTIALS_USR} password=${CREDENTIALS_PSW} python -m unittest discover tests'
+                /*
+                sh 'docker exec -t ${PROJECT} python tests/storage_test.py'
+                sh 'docker exec -t ${PROJECT} python tests/archiver_test.py'
+                sh '''docker exec -t ${PROJECT} python tests/pcloudclient_test.py \
                     -u ${CREDENTIALS_USR} \
                     -p ${CREDENTIALS_PSW} \
                 '''
+                */
             }
         }
         /*

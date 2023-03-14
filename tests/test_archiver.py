@@ -21,6 +21,7 @@ class ArchiverTest(unittest.TestCase):
         storage.update_directory_hash(directory, hasher.get_directory_hash(directory, hashlib.blake2b()))
         self.assertFalse(archiver.is_backup_needed(directory))
 
+        os.rmdir('empty_dir_path')
         storage.delete_directory_hash(directory)
 
 

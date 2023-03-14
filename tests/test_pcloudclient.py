@@ -1,20 +1,19 @@
-import sys
+import os
 import unittest
 import pcloud
 
-import src.pcloudclient as pcloud_client
-from src.arguments import Arguments
+from src.pcloudclient import PCloudClient
 
 
 class PCloudClientTest(unittest.TestCase):
-    pCloud_client = None
+    pCloud_client = PCloudClient(os.environ["username"], os.environ["password"])
     log_file_name = "log4p.json"
     log_file_name_new = "log4j.json"
 
     def test_login_fail(self):
         self.assertRaises(
             pcloud.api.AuthenticationError,
-            pcloud_client.PCloudClient, "bad_user", "bad_password"
+            PCloudClient, "bad_user", "bad_password"
         )
 
     def test_01_login_success(self):
@@ -37,13 +36,4 @@ class PCloudClientTest(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1:
-        args = Arguments(sys.argv[1:])
-        PCloudClientTest.pCloud_client = pcloud_client.PCloudClient(
-            args.get_user(),
-            args.get_password()
-        )
-        scriptName = sys.argv[0]
-        sys.argv.clear()
-        sys.argv.append(scriptName)
     unittest.main(failfast=True)
