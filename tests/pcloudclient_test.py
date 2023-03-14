@@ -31,7 +31,7 @@ class PCloudClientTest(unittest.TestCase):
         self.pCloud_client.rename_file(self.log_file_name, self.log_file_name_new)
         self.assertTrue(self.pCloud_client.is_file_present(self.log_file_name_new))
 
-    def test_03_delete(self):
+    def test_04_delete(self):
         self.pCloud_client.delete_file(self.log_file_name_new)
         self.assertFalse(self.pCloud_client.is_file_present(self.log_file_name_new))
 

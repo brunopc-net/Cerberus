@@ -2,7 +2,7 @@ import os
 import redis
 import log4p
 
-import date
+from src import date
 
 log = log4p.GetLogger(__name__, config="log4p.json").logger
 redis = redis.Redis(host='redis', port=6379, db=0, decode_responses=True)

@@ -2,7 +2,8 @@ import sys
 import time
 import log4p
 import pcloud
-import hasher
+
+from src import hasher
 import hashlib
 
 log = log4p.GetLogger(__name__, config="log4p.json").logger
