@@ -15,7 +15,7 @@ class ArchiverTest(unittest.TestCase):
         self.assertFalse(archiver.is_backup_needed(directory))
 
         empty_file = directory+"/empty_file.txt"
-        f = open(empty_file, "r")
+        f = open(empty_file, "w")
         f.close()
 
         self.assertTrue(archiver.is_backup_needed(directory))
