@@ -1,3 +1,4 @@
+import hashlib
 import os
 import unittest
 
@@ -17,7 +18,7 @@ class ArchiverTest(unittest.TestCase):
         os.mkdir(directory)
         self.assertTrue(archiver.is_backup_needed(directory))
 
-        storage.update_directory_hash(directory, hasher.get_directory_hash(directory))
+        storage.update_directory_hash(directory, hasher.get_directory_hash(directory, hashlib.blake2b))
         self.assertFalse(archiver.is_backup_needed(directory))
 
         storage.delete_directory_hash(directory)
