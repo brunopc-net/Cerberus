@@ -13,7 +13,5 @@ ENV PYTHONPATH "${PYTHONPATH}:/src"
 # Install requirements
 RUN pip3 install -r requirements.txt
 
-EXPORT username=""
-
 #Keep the container running before execution
 ENTRYPOINT sleep infinity
