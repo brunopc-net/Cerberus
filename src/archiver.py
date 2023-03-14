@@ -1,19 +1,19 @@
 import os
 import log4p
 import tarfile
-
-import date
 import hasher
 import hashlib
 
 import storage
+
+from src.date import get_today
 
 log = log4p.GetLogger(__name__, config="log4p.json").logger
 
 
 def get_new_archive_name(directory_path):
     return os.path.dirname(directory_path) + \
-        date.get_today() + \
+        get_today() + \
         '.tar'
 
 

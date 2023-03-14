@@ -12,7 +12,7 @@ class StorageTest(unittest.TestCase):
         fictive_directory_name = "/fictive_directory"
         fictive_directory_hash = "123456"
         storage.update_directory_hash(fictive_directory_name, fictive_directory_hash)
-        self.assertEquals(
+        self.assertEqual(
             fictive_directory_hash,
             storage.get_last_directory_hash(fictive_directory_name)
         )
