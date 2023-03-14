@@ -2,9 +2,10 @@ import hashlib
 import os
 import unittest
 
+
 import src.hasher as hasher
-import src.archiver as archiver
 import src.storage as storage
+import src.archiver as archiver
 
 
 class ArchiverTest(unittest.TestCase):
