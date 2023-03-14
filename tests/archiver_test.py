@@ -16,6 +16,10 @@ class ArchiverTest(unittest.TestCase):
 
     def test_is_backup_needed(self):
         self.assertTrue(archiver.is_backup_needed("./"))
+        hasher.get_directory_hash("./", hashlib.blake2b())
+        hasher.get_directory_hash("./", hashlib.blake2b())
+        hasher.get_directory_hash("./", hashlib.blake2b())
+
         storage.update_directory_hash("./", hasher.get_directory_hash("./", hashlib.blake2b()))
         self.assertFalse(archiver.is_backup_needed("./"))
 

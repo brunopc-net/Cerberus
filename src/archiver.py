@@ -4,16 +4,15 @@ import tarfile
 import hashlib
 
 from src import storage
-
-from src.date import get_today
-from src.hasher import get_directory_hash
+from src import date
+from src import hasher
 
 log = log4p.GetLogger(__name__, config="log4p.json").logger
 
 
 def get_new_archive_name(directory_path):
     return os.path.dirname(directory_path) + \
-        get_today() + \
+        date.get_today() + \
         '.tar'
 
 
@@ -25,7 +24,7 @@ def get_last_archive_name(directory_path):
 
 def is_backup_needed(directory_path):
     previous_hash = storage.get_last_directory_hash(directory_path)
-    current_hash = get_directory_hash(
+    current_hash = hasher.get_directory_hash(
             directory_path,
             hashlib.blake2b()
     )

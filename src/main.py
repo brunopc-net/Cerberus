@@ -1,8 +1,8 @@
 import sys
 import redis
 import log4p
+import archiver
 
-import archiver as archiver
 from arguments import Arguments
 from pcloudclient import PCloudClient
 

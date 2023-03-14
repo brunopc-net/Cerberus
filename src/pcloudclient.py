@@ -4,7 +4,8 @@ import log4p
 import pcloud
 
 import hashlib
-from src.hasher import get_file_hash
+
+from src import hasher
 
 log = log4p.GetLogger(__name__, config="log4p.json").logger
 
@@ -36,7 +37,7 @@ class PCloudClient:
         return response['metadata']['contents']
 
     def is_file_identical(self, file):
-        local_hash = get_file_hash(file, hashlib.sha1())
+        local_hash = hasher.get_file_hash(file, hashlib.sha1())
         if local_hash == self.get_checksum(file):
             log.info("Checksum validation passed, upload success")
             return True
