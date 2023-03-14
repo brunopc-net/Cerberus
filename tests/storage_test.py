@@ -1,7 +1,7 @@
 import unittest
 
-import src.storage as storage
 import src.date as date
+import src.storage as storage
 
 
 class StorageTest(unittest.TestCase):
