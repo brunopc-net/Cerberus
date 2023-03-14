@@ -15,13 +15,14 @@ class ArchiverTest(unittest.TestCase):
         os.remove(archive_file)
 
     def test_is_backup_needed(self):
-        self.assertTrue(archiver.is_backup_needed("./src"))
-        hasher.get_directory_hash("./src", hashlib.blake2b())
-        hasher.get_directory_hash("./src", hashlib.blake2b())
-        hasher.get_directory_hash("./src", hashlib.blake2b())
+        directory = "./src"
+        self.assertTrue(archiver.is_backup_needed(directory))
 
-        storage.update_directory_hash("./src", hasher.get_directory_hash("./src", hashlib.blake2b()))
-        self.assertFalse(archiver.is_backup_needed("./src"))
+        storage.update_directory_hash(
+            directory,
+            hasher.get_directory_hash(directory, hashlib.blake2b())
+        )
+        self.assertFalse(archiver.is_backup_needed(directory))
 
 
 if __name__ == "__main__":
