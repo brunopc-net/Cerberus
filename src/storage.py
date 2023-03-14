@@ -2,7 +2,7 @@ import os
 import redis
 import log4p
 
-from src import date
+from src.date import get_today
 
 log = log4p.GetLogger(__name__, config="log4p.json").logger
 redis = redis.Redis(host='redis', port=6379, db=0, decode_responses=True)
@@ -17,7 +17,7 @@ def get_last_execution_date():
 
 
 def update_last_execution_date():
-    redis.set(LAST_EXECUTION_KEY, date.get_today())
+    redis.set(LAST_EXECUTION_KEY, get_today())
 
 
 def get_last_directory_hash(directory_path):
