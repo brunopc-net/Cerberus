@@ -6,6 +6,10 @@ from src.pcloudclient import PCloudClient
 
 
 class PCloudClientTest(unittest.TestCase):
+
+    print("os.environ[username]: "+os.environ["username"])
+    print("os.environ[password]: " + os.environ["password"])
+
     pCloud_client = PCloudClient(os.environ["username"], os.environ["password"])
     log_file_name = "log4p.json"
     log_file_name_new = "log4j.json"
