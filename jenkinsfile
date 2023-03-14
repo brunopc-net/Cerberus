@@ -12,12 +12,13 @@ pipeline {
         stage ('test'){
             steps {
                 sh 'docker exec -t cerberus python tests/hasher_test.py'
-                sh 'docker exec -t cerberus python tests/storage_test.py'
-                sh 'docker exec -t cerberus python tests/archiver_test.py'
                 sh '''docker exec -t cerberus python tests/pcloudclient_test.py \
                     -u ${CREDENTIALS_USR} \
                     -p ${CREDENTIALS_PSW} \
                 '''
+                sh 'docker exec -t cerberus python tests/storage_test.py'
+                sh 'docker exec -t cerberus python tests/archiver_test.py'
+
             }
         }
         /*
