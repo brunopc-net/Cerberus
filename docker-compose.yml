@@ -10,6 +10,7 @@ services:
       - redis_data:/data
 
   cerberus:
+    container_name: cerberus
     build:
       context: .
       dockerfile: Dockerfile
