@@ -1,10 +1,6 @@
-import hashlib
 import os
 import unittest
 
-
-import src.hasher as hasher
-import src.storage as storage
 import src.archiver as archiver
 
 
@@ -16,13 +12,14 @@ class ArchiverTest(unittest.TestCase):
 
     def test_is_backup_needed(self):
         directory = "./src"
-        self.assertTrue(archiver.is_backup_needed(directory))
-
-        storage.update_directory_hash(
-            directory,
-            hasher.get_directory_hash(directory, hashlib.blake2b())
-        )
         self.assertFalse(archiver.is_backup_needed(directory))
+
+        empty_file = directory+"/empty_file.txt"
+        f = open(empty_file, "r")
+        f.close()
+
+        self.assertTrue(archiver.is_backup_needed(directory))
+        os.remove(empty_file)
 
 
 if __name__ == "__main__":
