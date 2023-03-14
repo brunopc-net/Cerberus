@@ -3,7 +3,7 @@ import log4p
 import tarfile
 import hashlib
 
-import storage
+from src import storage
 
 from src.date import get_today
 from src.hasher import get_directory_hash
