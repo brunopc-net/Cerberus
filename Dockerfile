@@ -10,8 +10,8 @@ WORKDIR /app
 COPY . .
 
 ENV PYTHONPATH "${PYTHONPATH}:/src"
-ENV PCLOUD_USER=${PCLOUD_USER}
-ENV PCLOUD_PASS=${PCLOUD_PASS}
+ENV username=${PCLOUD_CREDENTIALS_USR}
+ENV password=${PCLOUD_CREDENTIALS_PWD}
 
 # Install requirements
 RUN pip3 install -r requirements.txt

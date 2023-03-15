@@ -11,8 +11,8 @@ services:
 
   cerberus:
     environment:
-      username: "${PCLOUD_USER}"
-      password: "${PCLOUD_PASS}"
+      username: "${username}"
+      password: "${password}"
     container_name: cerberus
     build:
       context: .
