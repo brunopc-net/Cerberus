@@ -1,12 +1,20 @@
 import unittest
 
+import date
 import src.storage as storage
 
 
 class StorageTest(unittest.TestCase):
     def test_store_last_execution_date(self):
-        storage.update_last_execution_date()
-        self.assertIsNotNone(storage.get_last_execution_date())
+        last_execution_date = storage.get_last_execution_date()
+        fictive_date = "YYYY-MM-DD"
+        storage.update_last_execution_date(fictive_date)
+        self.assertEqual(
+            fictive_date,
+            storage.get_last_execution_date()
+        )
+        # Restoring last execution date
+        storage.update_last_execution_date(last_execution_date)
 
     def test_store_last_hash_directory_hash(self):
         fictive_directory_name = "/fictive_directory"

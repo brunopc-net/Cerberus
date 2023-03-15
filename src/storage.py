@@ -16,8 +16,8 @@ def get_last_execution_date():
     return last_execution_date
 
 
-def update_last_execution_date():
-    redis.set(LAST_EXECUTION_KEY, date.get_today())
+def update_last_execution_date(value):
+    redis.set(LAST_EXECUTION_KEY, value)
 
 
 def get_last_directory_hash(directory_path):
