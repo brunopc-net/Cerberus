@@ -8,14 +8,19 @@ from src import date
 log = log4p.GetLogger(__name__, config="log4p.json").logger
 
 
+def get_directory_name(directory_path):
+    path_array = os.path.split(directory_path)
+    return path_array[len(path_array) - 1]
+
+
 def get_new_archive_name(directory_path):
-    return os.path.dirname(directory_path) + \
+    return get_directory_name(directory_path) + \
         date.get_today() + \
         '.tar'
 
 
 def get_last_archive_name(directory_path):
-    return os.path.dirname(directory_path) + \
+    return get_directory_name(directory_path) + \
         (storage.get_last_archive_date()) + \
         '.tar'
 

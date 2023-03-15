@@ -10,6 +10,14 @@ class ArchiverTest(unittest.TestCase):
         self.assertTrue(os.path.isfile(archive_file))
         os.remove(archive_file)
 
+    def test_get_directory_name(self):
+        directory = "documents"
+        archive_file = archiver.get_directory_name("/home/user/"+directory)
+        self.assertTrue(
+            directory,
+            archiver.get_directory_name("/home/user/"+directory)
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
