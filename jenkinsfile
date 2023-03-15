@@ -8,8 +8,8 @@ pipeline {
         stage('build') {
             steps {
                 sh '''docker compose build \
-                    --build-arg PCLOUD_USER=${PCLOUD_CREDENTIALS_USR} \
-                    --build-arg PCLOUD_PASS=${PCLOUD_CREDENTIALS_PSW} \
+                    --build-arg ARG_PCLOUD_USER=${PCLOUD_CREDENTIALS_USR} \
+                    --build-arg ARG_PCLOUD_PASS=${PCLOUD_CREDENTIALS_PSW} \
                 '''
                 sh 'docker compose up -d'
             }
