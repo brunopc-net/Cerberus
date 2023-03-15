@@ -3,19 +3,18 @@ FROM python:3.11-alpine
 # Defining the Author
 MAINTAINER Bruno PC
 
-#Create a working directory
-WORKDIR /app
-
-# Add the source code into the image
-COPY . .
-
-# Install requirements with non-root user
+# Using non-root user
 RUN adduser -D python
 USER python
+
+#Create a working directory
 WORKDIR /home/python
 
-COPY --chown=python:python requirements.txt requirements.txt
+# Add the source code into the image
+COPY --chown=python:python . .
+#COPY --chown=python:python requirements.txt requirements.txt
 
+# Install requirements
 RUN pip install --upgrade pip
 RUN pip install --user -r requirements.txt
 
