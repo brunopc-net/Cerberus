@@ -1,11 +1,9 @@
 import os
 import log4p
 import tarfile
-import hashlib
 
 from src import storage
 from src import date
-from src import hasher
 
 log = log4p.GetLogger(__name__, config="log4p.json").logger
 
@@ -22,12 +20,8 @@ def get_last_archive_name(directory_path):
         '.tar'
 
 
-def is_backup_needed(directory_path):
+def is_backup_needed(directory_path, current_hash):
     previous_hash = storage.get_last_directory_hash(directory_path)
-    current_hash = hasher.get_directory_hash(
-            directory_path,
-            hashlib.blake2b()
-    )
     if previous_hash == current_hash:
         log.info("Directory data is the same since the last check, no need to back up")
         return False
