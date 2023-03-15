@@ -22,7 +22,7 @@ pipeline {
         }
         stage('execute') {
             steps {
-                sh 'docker exec -t cerberus python src/main.py -d /home/bruno/documents'
+                sh 'docker exec -t cerberus python src/main.py /home/bruno/documents'
             }
         }
     }
