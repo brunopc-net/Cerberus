@@ -12,6 +12,7 @@ COPY . .
 ENV PYTHONPATH "${PYTHONPATH}:/src"
 
 # Install requirements
+pip install --upgrade pip
 RUN pip3 install -r requirements.txt
 
 #Keep the container running before execution
