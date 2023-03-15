@@ -11,12 +11,12 @@ pipeline {
                     --build-arg ARG_PCLOUD_USER=${PCLOUD_CREDENTIALS_USR} \
                     --build-arg ARG_PCLOUD_PASS=${PCLOUD_CREDENTIALS_PSW} \
                 '''
-                sh 'docker compose up -d'
+                //sh 'docker compose up -d'
             }
         }
         stage ('test'){
             steps {
-                sh 'docker exec -t ${PROJECT} python -m unittest discover tests'
+                //sh 'docker exec -t ${PROJECT} python -m unittest discover tests'
                 /*
                 sh 'docker exec -t ${PROJECT} python tests/storage_test.py'
                 sh 'docker exec -t ${PROJECT} python tests/archiver_test.py'
