@@ -3,8 +3,12 @@ pipeline {
     environment {
         PCLOUD_CREDENTIALS = credentials('bec67a8c-149f-4db9-b4b8-66d61a1e3b02')
     }
-     parameters {
-        booleanParam(name: 'rebuild', defaultValue: false, description: 'Select this option if there\'s a change in the code')
+    parameters {
+        booleanParam(
+            name: 'rebuild',
+            defaultValue: false,
+            description: 'Select this option if there\'s an update in the project - let unchecked if just executing'
+        )
     }
     stages {
         stage ('Set credentials') {
@@ -42,10 +46,8 @@ pipeline {
     }
     post {
         always {
-            //Stopping docker
-            sh 'docker compose down'
-            //Deleting env file for security as it contains credentials
-            sh 'rm -f .env'
+            sh 'docker compose down' //Stopping docker
+            sh 'rm -f .env' //Deleting env file for security as it contains credentials
             echo 'Bye bye!!! It\'s been a pleasure, master!'
         }
     }
