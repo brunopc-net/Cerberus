@@ -20,15 +20,6 @@ def get_last_archive_name(directory_path):
         '.tar'
 
 
-def is_backup_needed(directory_path, current_hash):
-    previous_hash = storage.get_last_directory_hash(directory_path)
-    if previous_hash == current_hash:
-        log.info("Directory data is the same since the last check, no need to back up")
-        return False
-    log.info("Directory data has been updated since the last check, need to back up")
-    return True
-
-
 def archive(directory_path):
     archive_name = get_new_archive_name(directory_path)
     with tarfile.open(archive_name, "w") as archive_file:
