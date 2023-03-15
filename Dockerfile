@@ -12,11 +12,10 @@ WORKDIR /home/python
 
 # Add the source code into the image
 COPY --chown=python:python . .
-#COPY --chown=python:python requirements.txt requirements.txt
 
 # Install requirements
 ENV PATH="/home/python/.local/bin:${PATH}"
-RUN pip install --upgrade pip
+RUN python -m pip install --upgrade pip
 RUN pip install --user -r requirements.txt
 
 # Adding src to python path
