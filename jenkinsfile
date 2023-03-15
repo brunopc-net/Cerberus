@@ -14,9 +14,10 @@ pipeline {
                 //sh 'docker compose up -d'
             }
         }
+        /*
         stage ('test'){
             steps {
-                //sh 'docker exec -t ${PROJECT} python -m unittest discover tests'
+                sh 'docker exec -t ${PROJECT} python -m unittest discover tests'
                 /*
                 sh 'docker exec -t ${PROJECT} python tests/storage_test.py'
                 sh 'docker exec -t ${PROJECT} python tests/archiver_test.py'
@@ -24,9 +25,10 @@ pipeline {
                     -u ${CREDENTIALS_USR} \
                     -p ${CREDENTIALS_PSW} \
                 '''
-                */
+
             }
         }
+        */
         /*
         stage('execute') {
             steps {
