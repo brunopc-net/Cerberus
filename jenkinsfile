@@ -6,8 +6,10 @@ pipeline {
     }
     stages {
         stage ('env prep') {
-            sh 'echo  PCLOUD_USER=${PCLOUD_CREDENTIALS_USR} > .env'
-            sh 'echo  PCLOUD_PASS=${PCLOUD_CREDENTIALS_PSW} > .env'
+            steps {
+                sh 'echo  PCLOUD_USER=${PCLOUD_CREDENTIALS_USR} > .env'
+                sh 'echo  PCLOUD_PASS=${PCLOUD_CREDENTIALS_PSW} > .env'
+            }
         }
         stage('build') {
             steps {
