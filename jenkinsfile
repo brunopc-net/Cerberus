@@ -12,6 +12,7 @@ pipeline {
             steps {
                 sh 'export PCLOUD_USER=${PCLOUD_CREDENTIALS_USR}'
                 sh 'export PCLOUD_PASS=${PCLOUD_CREDENTIALS_PSW}'
+                sh 'echo ${PCLOUD_USER}'
                 sh 'docker compose up -d'
             }
         }
