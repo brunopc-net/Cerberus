@@ -6,9 +6,12 @@ import src.archiver as archiver
 
 class ArchiverTest(unittest.TestCase):
     def test_archive(self):
-        archive_file = archiver.archive("./src")
-        self.assertTrue(os.path.isfile(archive_file))
-        os.remove(archive_file)
+        directory = "src"
+        archiver.archive(directory)
+
+        archive_name = archiver.get_new_archive_name(directory)
+        self.assertTrue(os.path.isfile(archive_name))
+        os.remove(archive_name)
 
     def test_get_directory_name(self):
         directory = "documents"
