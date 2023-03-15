@@ -1,10 +1,11 @@
+import os
 import sys
 import log4p
-
 import date
 import hasher
 import hashlib
 import storage
+import archiver
 
 from pathlib import Path
 from pcloudclient import PCloudClient
@@ -39,7 +40,7 @@ if __name__ == '__main__':
         sys.exit()
 
     log.info("Data has been updated since the last check, need to archive")
-    # archive_name = archiver.archive(dir_to_backup)
+    archive_name = archiver.archive(dir_to_backup)
     # pcloud_client.upload(archive_name)
     # if pcloud_client.is_file_identical(archive_name):
     #     storage.update_directory_hash(dir_to_backup, current_hash)
@@ -48,5 +49,7 @@ if __name__ == '__main__':
     # else:
     #     log.info("Backup failure - Deleting the corrupted file on pCloud")
     #     pcloud_client.delete_file(archive_name)
+
+    os.remove(archive_name)
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
