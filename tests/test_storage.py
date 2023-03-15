@@ -5,12 +5,12 @@ import src.storage as storage
 
 class StorageTest(unittest.TestCase):
     def test_store_last_execution_date(self):
-        last_execution_date = storage.get_last_execution_date()
+        last_execution_date = storage.get_last_archive_date()
         fictive_date = "YYYY-MM-DD"
         storage.update_last_execution_date(fictive_date)
         self.assertEqual(
             fictive_date,
-            storage.get_last_execution_date()
+            storage.get_last_archive_date()
         )
         # Restoring last execution date
         storage.update_last_execution_date(last_execution_date)

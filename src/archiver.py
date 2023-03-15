@@ -16,7 +16,7 @@ def get_new_archive_name(directory_path):
 
 def get_last_archive_name(directory_path):
     return os.path.dirname(directory_path) + \
-        (storage.get_last_execution_date()) + \
+        (storage.get_last_archive_date()) + \
         '.tar'
 
 

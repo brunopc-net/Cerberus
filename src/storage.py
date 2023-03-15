@@ -2,17 +2,15 @@ import os
 import redis
 import log4p
 
-from src import date
-
 log = log4p.GetLogger(__name__, config="log4p.json").logger
 redis = redis.Redis(host='redis', port=6379, db=0, decode_responses=True)
 
-LAST_EXECUTION_KEY = "last_successful_execution"
+LAST_EXECUTION_KEY = "last_backup_date"
 
 
-def get_last_execution_date():
+def get_last_archive_date():
     last_execution_date = redis.get(LAST_EXECUTION_KEY)
-    log.debug("Last execution date: %s", last_execution_date)
+    log.debug("Last backup date: %s", last_execution_date)
     return last_execution_date
 
 

@@ -42,9 +42,11 @@ pipeline {
     }
     post {
         always {
+            //Stopping docker
             sh 'docker compose down'
+            //Deleting env file for security as it contains credentials
             sh 'rm -f .env'
-            echo 'Bye bye!!!'
+            echo 'Bye bye!!! It\'s been a pleasure, master!'
         }
     }
 }
