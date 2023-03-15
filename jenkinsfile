@@ -7,32 +7,32 @@ pipeline {
         booleanParam(name: 'rebuild', defaultValue: false, description: 'Select this option to reconstruct the docker image')
     }
     stages {
-        stage ('env prep') {
+        stage ('Set credentials') {
             steps {
                 sh 'echo PCLOUD_USER=${PCLOUD_CREDENTIALS_USR} > .env'
                 sh 'echo PCLOUD_PASS=${PCLOUD_CREDENTIALS_PSW} >> .env'
             }
         }
-        stage('Deleting old docker image') {
+        stage('Delete old docker image') {
             when {
-                environment name: 'rebuild',
-                value: 'true'
-            }
-            steps {
+                environment name: 'rebuild', value: 'true'
+            } steps {
                 sh 'docker image rm cerberus-cerberus'
             }
         }
-        stage('build') {
+        stage('Build') {
             steps {
                 sh 'docker compose up -d'
             }
         }
-        stage ('test'){
-            steps {
+        stage ('Test'){
+            when {
+                environment name: 'rebuild', value: 'true'
+            } steps {
                 sh 'docker exec -t cerberus python -m unittest discover tests'
             }
         }
-        stage('execute') {
+        stage('Execute') {
             steps {
                 sh 'docker exec -t cerberus python src/main.py /home/bruno/documents'
             }
@@ -41,6 +41,7 @@ pipeline {
     post {
         always {
             sh 'docker compose down'
+            sh 'rm -f .env'
             echo 'Bye bye!!!'
         }
     }
