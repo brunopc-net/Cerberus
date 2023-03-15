@@ -13,7 +13,8 @@ class StorageTest(unittest.TestCase):
             storage.get_last_archive_date()
         )
         # Restoring last execution date
-        storage.update_last_execution_date(last_execution_date)
+        if last_execution_date is not None:
+            storage.update_last_execution_date(last_execution_date)
 
     def test_store_last_hash_directory_hash(self):
         fictive_directory_name = "/fictive_directory"
