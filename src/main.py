@@ -25,17 +25,19 @@ if __name__ == '__main__':
     pcloud_client = PCloudClient.fromEnvCredentials()
 
     if archiver.is_backup_needed(dir_to_backup):
-        archive_name = archiver.archive(dir_to_backup)
-        pcloud_client.upload(archive_name)
-        if pcloud_client.is_file_identical(archive_name):
-            log.info("Archiving success. It's been a pleasure, master!")
-        else:
-            log.info("Deleting the corrupted file on pCloud")
-            pcloud_client.delete_file(archive_name)
+        log.info("Backup is needed")
+        # archive_name = archiver.archive(dir_to_backup)
+        # pcloud_client.upload(archive_name)
+        # if pcloud_client.is_file_identical(archive_name):
+        #     log.info("Archiving success. It's been a pleasure, master!")
+        # else:
+        #     log.info("Deleting the corrupted file on pCloud")
+        #     pcloud_client.delete_file(archive_name)
     else:
-        pcloud_client.rename_file(
-            archiver.get_last_archive_name(dir_to_backup),
-            archiver.get_new_archive_name(dir_to_backup)
-        )
+        log.info("Backup not needed")
+        # pcloud_client.rename_file(
+        #     archiver.get_last_archive_name(dir_to_backup),
+        #     archiver.get_new_archive_name(dir_to_backup)
+        # )
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/

@@ -20,13 +20,11 @@ pipeline {
                 sh 'docker exec -t cerberus python -m unittest discover tests'
             }
         }
-        /*
         stage('execute') {
             steps {
-                sh 'docker exec -t ${PROJECT} python src/main.py -d /home/bruno/documents'
+                sh 'docker exec -t cerberus python src/main.py -d /home/bruno/documents'
             }
         }
-        */
     }
     post {
         always {
