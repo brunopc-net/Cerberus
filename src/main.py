@@ -1,19 +1,28 @@
+import os
 import sys
 import redis
 import log4p
 import archiver
 
-from arguments import Arguments
+from pathlib import Path
 from pcloudclient import PCloudClient
 
 log = log4p.GetLogger(__name__, config="log4p.json").logger
 redis = redis.Redis(host='redis', port=6379, db=0, decode_responses=True)
 
 
+def get_valid_directory(directory):
+    if not Path(directory).is_dir():
+        log.error("%s is not a valid directory", directory)
+        sys.exit()
+    return directory
+
+
 if __name__ == '__main__':
-    args = Arguments()
-    dir_to_backup = args.get_valid_directory()
-    pcloud_client = PCloudClient(args.get_user(), args.get_password())
+
+    # args = Arguments()
+    dir_to_backup = get_valid_directory(sys.argv[1])
+    pcloud_client = PCloudClient.fromEnvCredentials()
 
     if archiver.is_backup_needed(dir_to_backup):
         archive_name = archiver.archive(dir_to_backup)

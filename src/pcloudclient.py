@@ -3,13 +3,11 @@ import sys
 import time
 import log4p
 import pcloud
-
 import hashlib
 
 from src import hasher
 
 log = log4p.GetLogger(__name__, config="log4p.json").logger
-
 
 WRITE_WAIT_DELAY_SECONDS = 1
 
@@ -19,6 +17,10 @@ class PCloudClient:
     def __init__(self, username, password):
         self.pc = pcloud.PyCloud(username, password)
         self.path = '/'
+
+    @classmethod
+    def fromEnvCredentials(cls):
+        return cls(os.environ["username"], os.environ["password"])
 
     def is_logged_in(self):
         return len(self.pc.auth_token) > 1
@@ -83,4 +85,3 @@ class PCloudClient:
             time.sleep(WRITE_WAIT_DELAY_SECONDS)
             return
         log.error("Failed to delete file %s", file)
-
