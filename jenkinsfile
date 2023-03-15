@@ -5,16 +5,15 @@ pipeline {
         PCLOUD_CREDENTIALS = credentials('bec67a8c-149f-4db9-b4b8-66d61a1e3b02')
     }
     stages {
+        stage ('env prep') {
+            sh 'echo  PCLOUD_USER=${PCLOUD_CREDENTIALS_USR} > .env'
+            sh 'echo  PCLOUD_PASS=${PCLOUD_CREDENTIALS_PSW} > .env'
+        }
         stage('build') {
             steps {
-                sh '''docker compose build \
-                    --build-arg ARG_PCLOUD_USER=${PCLOUD_CREDENTIALS_USR} \
-                    --build-arg ARG_PCLOUD_PASS=${PCLOUD_CREDENTIALS_PSW} \
-                '''
-                //sh 'docker compose up -d'
+                sh 'docker compose up -d'
             }
         }
-        /*
         stage ('test'){
             steps {
                 sh 'docker exec -t ${PROJECT} python -m unittest discover tests'
@@ -25,10 +24,9 @@ pipeline {
                     -u ${CREDENTIALS_USR} \
                     -p ${CREDENTIALS_PSW} \
                 '''
-
+                */
             }
         }
-        */
         /*
         stage('execute') {
             steps {

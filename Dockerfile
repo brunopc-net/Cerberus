@@ -11,12 +11,6 @@ COPY . .
 
 ENV PYTHONPATH "${PYTHONPATH}:/src"
 
-ARG ARG_PCLOUD_USER=default
-ARG ARG_PCLOUD_PASS=default
-
-ENV PCLOUD_USER=${ARG_PCLOUD_USER}
-ENV PCLOUD_USER=${ARG_PCLOUD_PASS}
-
 # Install requirements
 RUN pip3 install -r requirements.txt
 
