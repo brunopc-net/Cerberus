@@ -15,7 +15,7 @@ COPY --chown=python:python . .
 
 # Install requirements
 ENV PATH="/home/python/.local/bin:${PATH}"
-RUN python -m pip install --upgrade pip
+RUN pip install --upgrade pip
 RUN pip install --user -r requirements.txt
 
 # Adding src to python path
