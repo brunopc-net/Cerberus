@@ -6,13 +6,11 @@ pipeline {
     }
     stages {
         stage('build') {
-            environment {
-                PCLOUD_CREDENTIALS = credentials('bec67a8c-149f-4db9-b4b8-66d61a1e3b02')
-            }
             steps {
-                sh 'export PCLOUD_USER=1234'
-                sh 'export PCLOUD_PASS=${PCLOUD_CREDENTIALS_PSW}'
-                sh 'echo ${PCLOUD_USER}'
+                sh '''docker compose build \
+                    --build-arg PCLOUD_USER=${PCLOUD_CREDENTIALS_USR} \
+                    --build-arg PCLOUD_PASS=${PCLOUD_CREDENTIALS_PSW} \
+                '''
                 sh 'docker compose up -d'
             }
         }

@@ -8,7 +8,10 @@ WORKDIR /app
 
 # Add the source code into the image
 COPY . .
+
 ENV PYTHONPATH "${PYTHONPATH}:/src"
+ENV PCLOUD_USER=${PCLOUD_USER}
+ENV PCLOUD_PASS=${PCLOUD_PASS}
 
 # Install requirements
 RUN pip3 install -r requirements.txt
