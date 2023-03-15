@@ -9,11 +9,18 @@ WORKDIR /app
 # Add the source code into the image
 COPY . .
 
-ENV PYTHONPATH "${PYTHONPATH}:/src"
+# Install requirements with non-root user
+RUN adduser -D python
+USER python
+WORKDIR /home/python
 
-# Install requirements
+COPY --chown=python:python requirements.txt requirements.txt
+
 RUN pip install --upgrade pip
-RUN pip3 install -r requirements.txt
+RUN pip install --user -r requirements.txt
+
+# Adding src to python path
+ENV PYTHONPATH "${PYTHONPATH}:/src"
 
 #Keep the container running before execution
 ENTRYPOINT sleep infinity
