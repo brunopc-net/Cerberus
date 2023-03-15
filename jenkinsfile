@@ -4,7 +4,7 @@ pipeline {
         PCLOUD_CREDENTIALS = credentials('bec67a8c-149f-4db9-b4b8-66d61a1e3b02')
     }
      parameters {
-        booleanParam(name: 'rebuild', defaultValue: false, description: 'Select this option to reconstruct the docker image')
+        booleanParam(name: 'rebuild', defaultValue: false, description: 'Select this option if there\'s a change in the code')
     }
     stages {
         stage ('Set credentials') {
@@ -16,7 +16,8 @@ pipeline {
         stage('Delete old docker image') {
             when {
                 environment name: 'rebuild', value: 'true'
-            } steps {
+            }
+            steps {
                 sh 'docker image rm cerberus-cerberus'
             }
         }
@@ -28,7 +29,8 @@ pipeline {
         stage ('Test'){
             when {
                 environment name: 'rebuild', value: 'true'
-            } steps {
+            }
+            steps {
                 sh 'docker exec -t cerberus python -m unittest discover tests'
             }
         }
