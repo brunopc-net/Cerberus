@@ -10,10 +10,10 @@ services:
       - redis_data:/data
 
   cerberus:
+    container_name: cerberus
     environment:
       username: "${PCLOUD_USER}"
       password: "${PCLOUD_PASS}"
-    container_name: cerberus
     build:
       context: .
       dockerfile: Dockerfile
