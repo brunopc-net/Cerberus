@@ -31,7 +31,6 @@ if __name__ == '__main__':
     previous_hash = storage.get_last_directory_hash(dir_to_backup)
 
     pcloud_client = PCloudClient.fromEnvCredentials()
-    pcloud_client.set_path("/Bruno")
 
     previous_archive_name = archiver.get_last_archive_name(dir_to_backup)
     new_archive_name = archiver.get_new_archive_name(dir_to_backup)
@@ -43,12 +42,12 @@ if __name__ == '__main__':
 
     log.info("Data has been updated since the last check, need to archive")
     archiver.archive(dir_to_backup)
-    # pcloud_client.upload(new_archive_name)
-    # if pcloud_client.is_file_identical(new_archive_name):
-    #     storage.update_directory_hash(dir_to_backup, current_hash)
-    #     storage.update_last_execution_date(date.get_today())
-    #     log.info("Backup success - Deleting the previous backup on pCloud")
-    #     pcloud_client.delete_file(previous_archive_name)
+    pcloud_client.upload(new_archive_name)
+    if pcloud_client.is_file_identical(new_archive_name):
+        storage.update_directory_hash(dir_to_backup, current_hash)
+        storage.update_last_execution_date(date.get_today())
+        log.info("Backup success - Deleting the previous backup on pCloud")
+        pcloud_client.delete_file(previous_archive_name)
     # else:
     #     log.info("Backup failure - Deleting the corrupted file on pCloud")
     #     pcloud_client.delete_file(new_archive_name)

@@ -7,6 +7,7 @@ from src.pcloudclient import PCloudClient
 class PCloudClientTest(unittest.TestCase):
 
     pCloud_client = PCloudClient.fromEnvCredentials()
+
     log_file_name = "log4p.json"
     log_file_name_new = "log4j.json"
 
@@ -22,7 +23,6 @@ class PCloudClientTest(unittest.TestCase):
         )
 
     def test_02_upload(self):
-        self.pCloud_client.set_path('/Bruno')
         self.pCloud_client.upload(self.log_file_name)
         self.assertTrue(self.pCloud_client.is_file_identical(self.log_file_name))
 

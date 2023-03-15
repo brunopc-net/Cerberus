@@ -10,13 +10,14 @@ from src import hasher
 log = log4p.GetLogger(__name__, config="log4p.json").logger
 
 WRITE_DELAY_SECONDS = 1
+DEFAULT_DIRECTORY = "/Bruno"
 
 
 class PCloudClient:
 
     def __init__(self, username, password):
         self.pc = pcloud.PyCloud(username, password)
-        self.path = '/'
+        self.path = DEFAULT_DIRECTORY
 
     @classmethod
     def fromEnvCredentials(cls):
