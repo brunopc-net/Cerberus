@@ -29,27 +29,30 @@ if __name__ == '__main__':
     dir_to_backup = get_valid_directory(sys.argv[1])
     current_hash = hasher.get_directory_hash(dir_to_backup, hashlib.blake2b())
     previous_hash = storage.get_last_directory_hash(dir_to_backup)
+
     pcloud_client = PCloudClient.fromEnvCredentials()
+    pcloud_client.set_path("/Bruno")
+
+    previous_archive_name = archiver.get_last_archive_name(dir_to_backup)
+    new_archive_name = archiver.get_new_archive_name(dir_to_backup)
 
     if current_hash == previous_hash:
         log.info("Data is the same since the last check, no need to archive")
-        # pcloud_client.rename_file(
-        #     archiver.get_last_archive_name(dir_to_backup),
-        #     archiver.get_new_archive_name(dir_to_backup)
-        # )
+        pcloud_client.rename_file(previous_archive_name, new_archive_name)
         sys.exit()
 
     log.info("Data has been updated since the last check, need to archive")
-    archive_name = archiver.archive(dir_to_backup)
-    # pcloud_client.upload(archive_name)
-    # if pcloud_client.is_file_identical(archive_name):
+    archiver.archive(dir_to_backup)
+    # pcloud_client.upload(new_archive_name)
+    # if pcloud_client.is_file_identical(new_archive_name):
     #     storage.update_directory_hash(dir_to_backup, current_hash)
-    #     storage.update_last_execution_date()
-    #     log.info("Backup success")
+    #     storage.update_last_execution_date(date.get_today())
+    #     log.info("Backup success - Deleting the previous backup on pCloud")
+    #     pcloud_client.delete_file(previous_archive_name)
     # else:
     #     log.info("Backup failure - Deleting the corrupted file on pCloud")
-    #     pcloud_client.delete_file(archive_name)
+    #     pcloud_client.delete_file(new_archive_name)
 
-    os.remove(archive_name)
+    os.remove(new_archive_name)
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/

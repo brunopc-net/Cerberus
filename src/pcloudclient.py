@@ -9,7 +9,7 @@ from src import hasher
 
 log = log4p.GetLogger(__name__, config="log4p.json").logger
 
-WRITE_WAIT_DELAY_SECONDS = 1
+WRITE_DELAY_SECONDS = 1
 
 
 class PCloudClient:
@@ -60,7 +60,7 @@ class PCloudClient:
         log.debug(response)
         if response['result'] == 0:
             log.info('Uploaded the file  %s file to pcloud %s', file, self.path)
-            time.sleep(WRITE_WAIT_DELAY_SECONDS)
+            time.sleep(WRITE_DELAY_SECONDS)
             return
         log.error("Was not able to upload to pcloud")
         sys.exit(response['result'])
@@ -73,7 +73,7 @@ class PCloudClient:
         log.debug(response)
         if response['result'] == 0:
             log.info("File %s renamed to %s", file, new_name)
-            time.sleep(WRITE_WAIT_DELAY_SECONDS)
+            time.sleep(WRITE_DELAY_SECONDS)
             return
         log.error("Failed to rename file %s to %s", file, new_name)
 
@@ -82,6 +82,6 @@ class PCloudClient:
         log.debug(response)
         if response['result'] == 0:
             log.info("File %s deleted", file)
-            time.sleep(WRITE_WAIT_DELAY_SECONDS)
+            time.sleep(WRITE_DELAY_SECONDS)
             return
         log.error("Failed to delete file %s", file)

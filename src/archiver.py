@@ -14,13 +14,13 @@ def get_directory_name(directory_path):
 
 
 def get_new_archive_name(directory_path):
-    return get_directory_name(directory_path) + \
+    return get_directory_name(directory_path) + "_" + \
         date.get_today() + \
         '.tar'
 
 
 def get_last_archive_name(directory_path):
-    return get_directory_name(directory_path) + \
+    return get_directory_name(directory_path) + "_" + \
         (storage.get_last_archive_date()) + \
         '.tar'
 
@@ -33,4 +33,3 @@ def archive(directory_path):
                 archive_file.add(os.path.join(root, f))
         archive_file.close()
     log.info("Archive %s created from path %s", archive_name, directory_path)
-    return archive_name

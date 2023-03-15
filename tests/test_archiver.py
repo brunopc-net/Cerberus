@@ -12,7 +12,6 @@ class ArchiverTest(unittest.TestCase):
 
     def test_get_directory_name(self):
         directory = "documents"
-        archive_file = archiver.get_directory_name("/home/user/"+directory)
         self.assertTrue(
             directory,
             archiver.get_directory_name("/home/user/"+directory)
