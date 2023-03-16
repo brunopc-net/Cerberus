@@ -1,6 +1,6 @@
 # Cerberus
 
-This was a project built to consolidate my knowledge after watching these courses:
+This is a project that was built to consolidate my knowledge after watching these courses:
 
 - [Jenkins, From Zero To Hero: Become a DevOps Jenkins Master](https://www.udemy.com/course/jenkins-from-zero-to-hero/)
 - [Docker Mastery: with Kubernetes +Swarm from a Docker Captain](https://www.udemy.com/course/docker-mastery/) (part 1)
