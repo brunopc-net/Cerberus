@@ -44,4 +44,4 @@ Also, that third copy covers off the -very slim- probability of a Cryptomator bu
 
 ❌ If I delete an important document, it's been >24h, and that document wasn't part of the last yearly backup 
 
-That's why I'm thinking about adding some last week/last month/last quarter backup on the pCloud drive as well
+That's why I'm thinking adding last week/last month/last quarter backup capabilities to Cerberus.
