@@ -7,7 +7,7 @@ This is a project that was built to consolidate my knowledge after watching thes
 
 I also wanted to sharpen my Python skills.
 
-I wanted to create something useful and I needed something to automatically backing up my documents from my Raspberry cloud server at home to my pCloud family drive.
+I wanted to create something useful and I needed something to automatically backing up my documents from my Raspberry cloud server at home to my [pCloud](https://www.pcloud.com/) family drive.
 
 ## Why not syncing my documents to the same pCloud drive with something like [Rclone](https://rclone.org/)? 
 
