@@ -38,7 +38,7 @@ Hence this project. My documents are covered from:<br/>
 
 I also have a third copy of my data that I update yearly. It covers the risk of human error even further if I delete some document I shouldn't and I don't realize it in the following 24h window.
 
-Also, that third copy covers off the -very slim- probability of a Cryptomator bug that corrupts my encrypted data, That third copy is encrypted with another software (7zip).
+Also, that third copy covers off the -very slim- probability of a Cryptomator bug that corrupts my encrypted data. That third copy is encrypted with another software (7zip).
 
 ## Risks still remaining
 
