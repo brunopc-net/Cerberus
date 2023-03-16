@@ -21,7 +21,7 @@ The privacy concern can be worked around as I encrypt my documents with [Cryptom
 
 True, if I use a personal Google Drive to sync encrypted version of my documents, I would tackle all the privacy risks mentioned above.
 
-However, there's this other thing. I hate being locked in gradually with one company. Even my financial accounts are all separated (checking account, mortgage, investments...). I always refused to buy Apple products to avoid getting locked in their ecosystem. Then I bought my first Android phone. Ironically, I started to be locked in as much as I would with Apple. The only difference was it was more on the software side.
+However, there's this other thing. I hate being locked in gradually with one company. Even my financial accounts are all separated (checking account, mortgage, investments...). I always refused to buy Apple products to avoid getting locked in their ecosystem. Then I bought my first Android phone and started using Google apps. Ironically, I started to be locked in as much as I would with Apple. The only difference was it was more on the software side.
 
 I decided years ago to free myself of any big tech giant. They represent a risk to my individual freedom as well as the risk they pose on our digital collective freedom.
 
