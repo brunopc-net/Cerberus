@@ -23,9 +23,7 @@ True, if I use a personal Google Drive to sync encrypted version of my documents
 
 However, there's this other thing. I hate being locked in gradually with one company. Even my financial accounts are all separated (checking account, mortgage, investments...). I always refused to buy Apple products to avoid getting locked in their ecosystem. Then I bought my first Android phone and started using Google apps. Ironically, I started to be locked in as much as I would with Apple. The only difference was it was more on the software side.
 
-I decided years ago to free myself of any big tech giant. They represent a risk to my individual freedom as well as the risk they pose on our digital collective freedom.
-
-[#Heal the web](https://twitter.com/dhh/status/1212769409451864064)
+I decided years ago to free myself of any big tech giant. They represent a risk to my individual freedom as well as the risk they pose on our digital collective freedom. [#Heal the web](https://twitter.com/dhh/status/1212769409451864064)
 
 There is also another risk: the risk of myself deleting a document that shouldn't have been deleted. If I use something like Rclone to sync with pCloud or Google Drive, I still need regular backups to cover the risk of my personal human error.
 
