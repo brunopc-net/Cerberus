@@ -12,7 +12,7 @@ I wanted to create something useful. I needed something to automatically backup 
 ## Why not syncing my documents to the same pCloud drive with something like [Rclone](https://rclone.org/)? 
 
 The pCloud drive is shared with my family. Sharing a readable copy of my documents poses two main risks:
-- Privacy concerns. Some of my documents are very sensitive (like tax reports, critical business work). The privacy risks apply to my family as well as on pCloud entities
+- Privacy concerns. Some of my documents are very sensitive (like tax reports, critical business work). The privacy risks apply to my family as well as to pCloud entities
 - Loss of data, if another family member makes a mistake and delete some of my data, I would potentially lose essential documents
 
 The privacy concern can be worked around as I encrypt my documents with [Cryptomator](https://cryptomator.org/). However, the data loss risk is still a factor.
