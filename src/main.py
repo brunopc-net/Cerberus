@@ -38,6 +38,7 @@ if __name__ == '__main__':
     if current_hash == previous_hash:
         log.info("Data is the same since the last check, no need to archive")
         pcloud_client.rename_file(previous_archive_name, new_archive_name)
+        storage.update_last_execution_date(date.get_today())
         sys.exit()
 
     log.info("Data has been updated since the last check, need to archive")
