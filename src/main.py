@@ -22,6 +22,8 @@ def get_valid_directory(directory):
 
 if __name__ == '__main__':
 
+    storage.update_last_execution_date("2023-03-21")
+
     if date.get_today() == storage.get_last_archive_date():
         log.info("Data is already backed up for today")
         sys.exit()
@@ -32,7 +34,6 @@ if __name__ == '__main__':
 
     pcloud_client = PCloudClient.fromEnvCredentials()
 
-    storage.update_last_execution_date("2023-03-21")
     previous_archive_name = archiver.get_last_archive_name(dir_to_backup)
     new_archive_name = archiver.get_new_archive_name(dir_to_backup)
 
