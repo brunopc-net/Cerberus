@@ -22,10 +22,12 @@ pipeline {
                 environment name: 'rebuild', value: 'true'
             }
             steps {
-                try{
-                    sh 'docker image rm cerberus-cerberus'
-                } catch (err) {
-                    echo err.getMessage()
+                script {
+                    try{
+                        sh 'docker image rm cerberus-cerberus'
+                    } catch (err) {
+                        echo err.getMessage()
+                    }
                 }
             }
         }
