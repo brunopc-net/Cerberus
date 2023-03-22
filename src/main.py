@@ -1,4 +1,3 @@
-import os
 import sys
 import log4p
 import date
@@ -21,8 +20,6 @@ def get_valid_directory(directory):
 
 
 if __name__ == '__main__':
-
-    storage.update_last_execution_date("2023-03-21")
 
     if date.get_today() == storage.get_last_archive_date():
         log.info("Data is already backed up for today")
