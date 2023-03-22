@@ -35,6 +35,8 @@ if __name__ == '__main__':
     previous_archive_name = archiver.get_last_archive_name(dir_to_backup)
     new_archive_name = archiver.get_new_archive_name(dir_to_backup)
 
+    storage.update_last_execution_date("2023-03-21")
+
     if current_hash == previous_hash:
         log.info("Data is the same since the last check, no need to archive")
         pcloud_client.rename_file(previous_archive_name, new_archive_name)
@@ -56,7 +58,5 @@ if __name__ == '__main__':
     else:
         log.info("Backup failure - Deleting the corrupted file on pCloud")
         pcloud_client.delete_file(new_archive_name)
-
-    os.remove(new_archive_name)
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
