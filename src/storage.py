@@ -16,6 +16,7 @@ def get_last_archive_date():
 
 def update_last_execution_date(value):
     redis.set(LAST_EXECUTION_KEY, value)
+    log.debug(f'Updated {LAST_EXECUTION_KEY} to {value}')
 
 
 def get_last_directory_hash(directory_path):
@@ -26,6 +27,7 @@ def get_last_directory_hash(directory_path):
 
 def update_directory_hash(directory_path, new_hash):
     redis.set(get_dir_hash_key(directory_path), new_hash)
+    log.debug(f'Updated {get_dir_hash_key(directory_path)} to {new_hash}')
 
 
 def get_dir_hash_key(directory_path):
@@ -34,3 +36,4 @@ def get_dir_hash_key(directory_path):
 
 def delete_directory_hash(directory_path):
     redis.delete(get_dir_hash_key(directory_path))
+    log.debug(f'Deleted {get_dir_hash_key(directory_path)} from storage')

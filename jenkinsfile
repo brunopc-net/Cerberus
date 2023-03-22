@@ -17,7 +17,7 @@ pipeline {
                 sh 'echo PCLOUD_PASS=${PCLOUD_CREDENTIALS_PSW} >> .env'
             }
         }
-        stage('Delete old docker image') {
+        stage('Reset Docker image') {
             when {
                 environment name: 'rebuild', value: 'true'
             }

@@ -32,10 +32,9 @@ if __name__ == '__main__':
 
     pcloud_client = PCloudClient.fromEnvCredentials()
 
+    storage.update_last_execution_date("2023-03-21")
     previous_archive_name = archiver.get_last_archive_name(dir_to_backup)
     new_archive_name = archiver.get_new_archive_name(dir_to_backup)
-
-    storage.update_last_execution_date("2023-03-21")
 
     if current_hash == previous_hash:
         log.info("Data is the same since the last check, no need to archive")
