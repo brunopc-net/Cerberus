@@ -1,3 +1,5 @@
+I stopped this project when Proton released a got enough desktop app for [ProtonDrive](https://proton.me/drive). I was already paying for an account for their great email service ; hence it was a free addition to my acccount.
+
 # Cerberus
 
 This is a project that was built to consolidate my knowledge after watching these courses:
